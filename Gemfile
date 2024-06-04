@@ -77,3 +77,5 @@ gem 'activestorage'
 gem 'simple_calendar'
 
 gem 'faker'
+
+gem 'aws-sdk-s3', require: false

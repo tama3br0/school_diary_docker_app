@@ -76,4 +76,7 @@ Rails.application.configure do
 
   config.hosts << "school-diary.xyz"
   config.hosts << "www.school-diary.xyz"
+
+    # Active Storage serviceの設定
+    config.active_storage.service = :amazon
 end
