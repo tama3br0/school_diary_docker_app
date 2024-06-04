@@ -78,4 +78,10 @@ gem 'simple_calendar'
 
 gem 'faker'
 
-gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-s3'
+gem 'aws-sdk-core'
+gem 'aws-sdk-kms'
+gem 'aws-sigv4'
+gem 'aws-eventstream'
+gem 'aws-partitions'
+gem 'jmespath'

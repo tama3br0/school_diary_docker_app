@@ -319,7 +319,12 @@ PLATFORMS
 
 DEPENDENCIES
   activestorage
+  aws-eventstream
+  aws-partitions
+  aws-sdk-core
+  aws-sdk-kms
   aws-sdk-s3
+  aws-sigv4
   bootsnap
   capybara
   debug
@@ -328,6 +333,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  jmespath
   mysql2 (~> 0.5)
   omniauth-google-oauth2
   puma (>= 5.0)
