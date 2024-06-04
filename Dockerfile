@@ -1,7 +1,6 @@
-# Dockerfile
 FROM ruby:3.2.3
 
-RUN apt-get update -qq && apt-get install -y nodejs
+RUN apt-get update -qq && apt-get install -y nodejs libmysqlclient-dev
 
 WORKDIR /myapp
 
@@ -13,3 +12,7 @@ RUN bundle install
 COPY . /myapp
 
 RUN ln -s /myapp/bin/rails /usr/local/bin/rails
+
+EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
