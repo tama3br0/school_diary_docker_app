@@ -290,9 +290,11 @@ Devise.setup do |config|
       image_aspect_ratio: 'square',
       image_size: 50,
       access_type: 'offline',
+      provider_ignores_state: true,  # 本番環境でもCSRFトークンのチェックを無効化
       redirect_uri: 'https://school-diary.xyz/users/auth/google_oauth2/callback'
     }
   end
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
