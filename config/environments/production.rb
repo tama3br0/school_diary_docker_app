@@ -99,4 +99,7 @@ Rails.application.configure do
 
     # Active Storage serviceの設定
     config.active_storage.service = :amazon
+
+    # Default URL options for the application
+  Rails.application.routes.default_url_options = { host: 'school-diary.xyz', protocol: 'https' }
 end
