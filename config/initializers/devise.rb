@@ -40,7 +40,7 @@ Devise.setup do |config|
       image_size: 50,
       access_type: 'offline',
       provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
-      redirect_uri: 'https://school-diary.xyz/users/auth/google_oauth2/callback'
+      redirect_uri: 'https://school-diary.xyz/__/auth/handler'
     }
   end
 
