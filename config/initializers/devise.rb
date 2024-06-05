@@ -273,44 +273,44 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # 追記
-  if Rails.env.development?
-    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
-      scope: 'userinfo.email, userinfo.profile',
-      prompt: 'select_account',
-      image_aspect_ratio: 'square',
-      image_size: 50,
-      access_type: 'offline',
-      provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
-      redirect_uri: 'http://localhost:3000/users/auth/google_oauth2/callback'
-    }
+  if Rails.env.production?
     config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
         scope: 'userinfo.email, userinfo.profile',
         prompt: 'select_account',
         image_aspect_ratio: 'square',
         image_size: 50,
         access_type: 'offline',
-        provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
-        redirect_uri: 'http://127.0.0.1:3000/users/auth/google_oauth2/callback'
+        provider_ignores_state: true,  # 本番環境でもCSRFトークンのチェックを無効化
+        redirect_uri: 'https://school-diary.xyz/users/auth/google_oauth2/callback'
+      }
+      config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
+        scope: 'userinfo.email, userinfo.profile',
+        prompt: 'select_account',
+        image_aspect_ratio: 'square',
+        image_size: 50,
+        access_type: 'offline',
+        provider_ignores_state: true,  # 本番環境でもCSRFトークンのチェックを無効化
+        redirect_uri: 'https://www.school-diary.xyz/users/auth/google_oauth2/callback'
       }
   else
-    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
-      scope: 'userinfo.email, userinfo.profile',
-      prompt: 'select_account',
-      image_aspect_ratio: 'square',
-      image_size: 50,
-      access_type: 'offline',
-      provider_ignores_state: true,  # 本番環境でもCSRFトークンのチェックを無効化
-      redirect_uri: 'https://school-diary.xyz/users/auth/google_oauth2/callback'
-    }
-    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
-      scope: 'userinfo.email, userinfo.profile',
-      prompt: 'select_account',
-      image_aspect_ratio: 'square',
-      image_size: 50,
-      access_type: 'offline',
-      provider_ignores_state: true,  # 本番環境でもCSRFトークンのチェックを無効化
-      redirect_uri: 'https://www.school-diary.xyz/users/auth/google_oauth2/callback'
-    }
+        config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
+          scope: 'userinfo.email, userinfo.profile',
+          prompt: 'select_account',
+          image_aspect_ratio: 'square',
+          image_size: 50,
+          access_type: 'offline',
+          provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
+          redirect_uri: 'http://localhost:3000/users/auth/google_oauth2/callback'
+        }
+        config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
+            scope: 'userinfo.email, userinfo.profile',
+            prompt: 'select_account',
+            image_aspect_ratio: 'square',
+            image_size: 50,
+            access_type: 'offline',
+            provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
+            redirect_uri: 'http://127.0.0.1:3000/users/auth/google_oauth2/callback'
+          }
   end
 
   # ==> Warden configuration
