@@ -19,6 +19,8 @@ services:
       - db
     env_file:
       - .env
+    environment:
+      RAILS_ENV: production
 
 volumes:
   db_data:
