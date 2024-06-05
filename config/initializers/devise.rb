@@ -30,7 +30,7 @@ Devise.setup do |config|
       image_size: 50,
       access_type: 'offline',
       provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
-      redirect_uri: 'https://school-diary.xyz/users/auth/google_oauth2/callback'
+      redirect_uri: 'http://localhost:3000/users/auth/google_oauth2/callback'
     }
   else
     config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
@@ -39,7 +39,6 @@ Devise.setup do |config|
       image_aspect_ratio: 'square',
       image_size: 50,
       access_type: 'offline',
-      provider_ignores_state: true,  # 開発環境ではCSRFトークンのチェックを無効化
       redirect_uri: 'https://school-diary.xyz/users/auth/google_oauth2/callback'
     }
   end
