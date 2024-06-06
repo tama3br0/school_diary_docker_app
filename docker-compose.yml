@@ -7,6 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: school_diary_app_production
+      MYSQL_USER: school_diary_app
+      MYSQL_PASSWORD: ${SCHOOL_DIARY_APP_DATABASE_PASSWORD}
 
   web:
     build: .

@@ -1,10 +1,9 @@
-
 default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: myapp
-  password: myapp_password
+  username: school_diary_app
+  password: <%= ENV["SCHOOL_DIARY_APP_DATABASE_PASSWORD"] %>
   host: db
 
 development:
@@ -18,5 +17,3 @@ test:
 production:
   <<: *default
   database: school_diary_app_production
-  username: school_diary_app
-  password: <%= ENV["SCHOOL_DIARY_APP_DATABASE_PASSWORD"] %>
