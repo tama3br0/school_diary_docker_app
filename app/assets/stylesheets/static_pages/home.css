@@ -1,6 +1,6 @@
 /* static_pages/home.css */
 body {
-    background-image: url('https://school-diary-app-bucket.s3.amazonaws.com/path/to/top.png');
+    background-image: url('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/top.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
