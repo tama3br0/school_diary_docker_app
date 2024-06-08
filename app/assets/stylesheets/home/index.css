@@ -1,6 +1,6 @@
 /* home/index.css */
 body {
-    background-image: url('/assets/top.png');
+    background-image: image-url('top.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
