@@ -1,6 +1,6 @@
 FROM ruby:3.2.3
 
-RUN apt-get update -qq && apt-get install -y nodejs libmariadb-dev-compat libmariadb-dev
+RUN apt-get update -qq && apt-get install -y nodejs libmariadb-dev-compat libmariadb-dev build-essential
 
 WORKDIR /myapp
 
