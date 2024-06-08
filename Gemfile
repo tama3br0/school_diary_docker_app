@@ -79,3 +79,5 @@ gem 'simple_calendar'
 gem 'faker'
 
 gem 'aws-sdk-s3'
+
+gem 'sassc-rails', '>= 2.1.0'
