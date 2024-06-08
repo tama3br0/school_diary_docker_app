@@ -30,6 +30,9 @@ Rails.application.configure do
   config.assets.compile = false
   config.assets.digest = true # <= 追記
 
+  # アセットホストの設定
+  config.asset_host = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com"
+
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
