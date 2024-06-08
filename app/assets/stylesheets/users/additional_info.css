@@ -1,6 +1,6 @@
 /* users/additional_info.css */
 body {
-    background-image: url('/assets/top.png');
+    background-image: url('https://your-bucket-name.s3.amazonaws.com/path/to/top.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
