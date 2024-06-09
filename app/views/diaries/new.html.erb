@@ -5,7 +5,7 @@
         <div class="date-field">
             <%= f.hidden_field :date, value: Date.today %>
             <label>ひづけ</label>
-            <span><%= Date.today.strftime("%Yねん%mがつ%dにち") %></span>
+            <span><%= "#{Date.today.year}ねん#{Date.today.month}がつ#{Date.today.day}にち" %></span>
         </div>
 
         <% @questions.each do |question| %>
@@ -19,7 +19,7 @@
                                 <% if emotion.image.attached? %>
                                     <%= image_tag url_for(emotion.image), alt: emotion.text, class: "emotion-image" %>
                                 <% end %>
-                                <span><%= emotion.text %></span>
+                                <span class="emotion-text"><%= emotion.text %></span>
                             <% end %>
                         </div>
                     <% end %>
