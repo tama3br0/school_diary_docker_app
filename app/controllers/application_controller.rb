@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!, unless: :devise_controller?
     before_action :check_user_authentication
+    before_action :set_user_info, if: :user_signed_in?
 
     private
 
@@ -25,4 +26,16 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(_resource_or_scope)
       unauthenticated_root_path
     end
-end
+
+    def set_user_info
+      @user = current_user
+      if @user.grade_class.present?
+        @school_code = @user.grade_class.school_code
+        @grade = @user.grade_class.grade
+        @class_num = @user.grade_class.class_num
+        @student_num = @user.student_num
+        @role = @user.role
+        @name = @user.name
+      end
+    end
+  end
