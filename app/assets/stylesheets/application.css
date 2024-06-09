@@ -9,4 +9,5 @@
  *= require users/additional_info
  *= require diaries/new
  *= require diaries/choose_diary
+ *= require diaries/show
  */
