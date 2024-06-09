@@ -3,7 +3,7 @@
 
 <div class="day-navigation">
   <%= link_to 'まえの ひ', diary_path(@diary.previous_day), class: 'button' if @diary.previous_day %>
-  <span class="date-field"><%= @diary.date.strftime('%Y年 %m月 %d日 (%a)') %></span>
+  <span class="date-field"><%= @diary.date.strftime('%Yねん%-mがつ%-dにち') %> (<%= @diary.date.strftime('%A').gsub('Sunday', 'にち').gsub('Monday', 'げつ').gsub('Tuesday', 'か').gsub('Wednesday', 'すい').gsub('Thursday', 'もく').gsub('Friday', 'きん').gsub('Saturday', 'ど') %>)</span>
   <%= link_to 'つぎの ひ', diary_path(@diary.next_day), class: 'button' if @diary.next_day %>
 </div>
 
