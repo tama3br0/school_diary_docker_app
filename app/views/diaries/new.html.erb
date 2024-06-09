@@ -16,7 +16,9 @@
                         <div class="emotion-item">
                             <%= radio_button_tag "answers[#{question.id}]", emotion.id, false, class: "emotion-radio" %>
                             <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
-                                <%= image_tag emotion.image.attached? ? url_for(emotion.image) : "default_image.png", alt: emotion.text, class: "emotion-image" %>
+                                <% if emotion.image.attached? %>
+                                    <%= image_tag url_for(emotion.image), alt: emotion.text, class: "emotion-image" %>
+                                <% end %>
                                 <span><%= emotion.text %></span>
                             <% end %>
                         </div>
