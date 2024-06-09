@@ -5,7 +5,7 @@
         <div class="date-field">
             <%= f.hidden_field :date, value: Date.today %>
             <label>ひづけ</label>
-            <span><%= Date.today %></span>
+            <span><%= Date.today.strftime("%Yねん%mがつ%dにち") %></span>
         </div>
 
         <% @questions.each do |question| %>
