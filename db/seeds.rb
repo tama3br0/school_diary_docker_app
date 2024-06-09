@@ -20,13 +20,13 @@ questions_data.each do |question_data|
     # Attach images to emotions based on text if not already attached
     unless emotion.image.attached?
       case emotion_data["text"]
-      when "とても たのしかった", "とても よくわかった", "とても おいしかった"
+      when "とても たのしかった", "とても よくわかった", "ぜんぶたべて、おかわりもした"
         emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/very_smile.png')), filename: 'very_smile.png')
-      when "たのしかった", "よくわかった", "おいしかった"
+      when "たのしかった", "よくわかった", "のこさずに、ぜんぶたべた"
         emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/smile.png')), filename: 'smile.png')
-      when "すこし たのしかった", "すこし わかった", "すこし おいしかった"
+      when "すこし たのしかった", "すこし わかった", "へらしたけれど、ぜんぶたべた"
         emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/normal.png')), filename: 'normal.png')
-      when "たのしくなかった", "わからなかった", "おいしくなかった"
+      when "たのしくなかった", "わからなかった", "すこし のこしてしまった"
         emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/shock.png')), filename: 'shock.png')
       end
     end

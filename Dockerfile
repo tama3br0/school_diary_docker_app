@@ -15,4 +15,4 @@ COPY . /myapp
 RUN ln -s /myapp/bin/rails /usr/local/bin/rails
 
 # RAILS_ENVをproductionに設定
-# ENV RAILS_ENV production
+ENV RAILS_ENV production
