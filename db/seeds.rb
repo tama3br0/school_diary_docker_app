@@ -1,29 +1,37 @@
 require 'json'
 require 'faker'
 
-# JSONファイルを読み込む
+# インラインジョブキューを有効にする
+Rails.application.config.active_job.queue_adapter = :inline
+
 file_path = Rails.root.join('db', 'questions.json')
 questions_data = JSON.parse(File.read(file_path))
 
-# 既存のデータを削除
+puts "データを削除中です..."
 QuestionEmotion.delete_all
 ChooseEmotion.delete_all
 Question.delete_all
+puts "削除が完了しました"
 
-questions_data.each do |question_data|
-  # 質問が存在しない場合のみ作成
+questions_data.each_with_index do |question_data, q_index|
+  puts "質問 #{q_index + 1} / #{questions_data.size} を処理中"
+  start_time = Time.now
   question = Question.find_or_create_by!(text: question_data["text"])
+  puts "質問の処理時間: #{Time.now - start_time} 秒"
 
-  question_data["emotions"].each do |emotion_data|
-    # 感情が存在しない場合のみ作成
+  question_data["emotions"].each_with_index do |emotion_data, e_index|
+    puts "質問 #{q_index + 1} の感情 #{e_index + 1} / #{question_data["emotions"].size} を処理中"
+    start_time = Time.now
     emotion = ChooseEmotion.find_or_create_by!(text: emotion_data["text"], level: emotion_data["level"])
+    puts "感情の処理時間: #{Time.now - start_time} 秒"
 
     unless QuestionEmotion.exists?(question: question, choose_emotion: emotion)
       QuestionEmotion.create!(question: question, choose_emotion: emotion)
     end
 
-    # Attach images to emotions based on text if not already attached
-    unless emotion.image.attached?
+    if emotion.image.attached?
+      puts "感情画像は既に添付されています"
+    else
       case emotion_data["text"]
       when "とても たのしかった", "とても よくわかった", "ぜんぶたべて、おかわりもした"
         emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/very_smile.png')), filename: 'very_smile.png')
@@ -34,9 +42,15 @@ questions_data.each do |question_data|
       when "たのしくなかった", "わからなかった", "すこし のこしてしまった"
         emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/shock.png')), filename: 'shock.png')
       end
+      puts "画像の添付時間: #{Time.now - start_time} 秒"
     end
   end
 end
+
+puts "全ての処理が完了しました"
+
+# 元のジョブキューアダプターに戻す
+Rails.application.config.active_job.queue_adapter = :async
 
 # # 学校コード、学年、クラス番号の組み合わせを生成
 # school_codes = [1, 2]
