@@ -5,6 +5,11 @@ require 'faker'
 file_path = Rails.root.join('db', 'questions.json')
 questions_data = JSON.parse(File.read(file_path))
 
+# 既存のデータを削除
+QuestionEmotion.delete_all
+ChooseEmotion.delete_all
+Question.delete_all
+
 questions_data.each do |question_data|
   # 質問が存在しない場合のみ作成
   question = Question.find_or_create_by!(text: question_data["text"])
