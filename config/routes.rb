@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'classes/index'
-  get 'classes/show'
-  get 'stamps/index'
     devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
     authenticated :user do
