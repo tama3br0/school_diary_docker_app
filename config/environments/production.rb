@@ -21,7 +21,7 @@ Rails.application.configure do
   # config.require_master_key = true
 
   # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
-  config.public_file_server.enabled = false #<= 本番環境では、NginxやApacheなどのウェブサーバーを使用して静的ファイルを提供することを推奨する。これにより、パフォーマンスが向上し、Railsアプリケーションの負荷が軽減される
+#   config.public_file_server.enabled = false #<= 本番環境では、NginxやApacheなどのウェブサーバーを使用して静的ファイルを提供することを推奨する。これにより、パフォーマンスが向上し、Railsアプリケーションの負荷が軽減される
 
   # Compress CSS using a preprocessor.
 #   config.assets.css_compressor = :sass
