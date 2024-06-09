@@ -1,7 +1,9 @@
 <header>
     <div class="left-section">
         <div class="logo">
-            <img src="<%= asset_path('sd_logo3.png') %>" alt="がっこうにっきロゴ">
+            <%= link_to root_path do %>
+                <img src="<%= asset_path('sd_logo3.png') %>" alt="がっこうにっきロゴ">
+            <% end %>
         </div>
         <div class="school-code">
             がっこうコード: <%= @school_code %>
