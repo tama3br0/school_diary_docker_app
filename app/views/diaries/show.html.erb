@@ -1,6 +1,4 @@
 <h1>にっきをよむ</h1>
-<%= link_to 'さいしょに もどる', authenticated_root_path, class: 'button' %>
-
 <div class="day-navigation">
   <%= link_to 'まえの ひ', diary_path(@diary.previous_day), class: 'button' if @diary.previous_day %>
   <span class="date-field"><%= @diary.date.strftime('%Yねん%-mがつ%-dにち') %> (<%= @diary.date.strftime('%A').gsub('Sunday', 'にち').gsub('Monday', 'げつ').gsub('Tuesday', 'か').gsub('Wednesday', 'すい').gsub('Thursday', 'もく').gsub('Friday', 'きん').gsub('Saturday', 'ど') %>)</span>
