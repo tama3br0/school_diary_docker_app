@@ -1,0 +1,80 @@
+/* diaries/show.css */
+.diary-page {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    padding-top: 120px; /* ヘッダーの高さ分のパディングを追加 */
+  }
+
+  .diary-page h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .button {
+    background-color: #6ba4ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 10px;
+    display: inline-block;
+  }
+
+  .day-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .date-field {
+    font-size: 1.2em;
+    margin: 0 15px;
+    color: #333;
+  }
+
+  .question-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; /* センター揃えにする */
+  }
+
+  .question-container h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .emotions-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .emotion-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+
+  .emotion-item img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 50px; /* 画像の大きさを50pxに固定 */
+    height: 50px; /* 画像の大きさを50pxに固定 */
+  }
+
+  .emotion-item span {
+    display: block;
+    font-size: 0.8em;
+    color: #333;
+  }
