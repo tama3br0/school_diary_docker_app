@@ -10,4 +10,5 @@
  *= require diaries/new
  *= require diaries/choose_diary
  *= require diaries/show
+ *= require stamps/show
  */
