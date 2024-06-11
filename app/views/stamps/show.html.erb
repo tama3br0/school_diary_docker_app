@@ -9,8 +9,8 @@
         <div class="day">
             <%= date.day %>
             <% if @diaries.any? { |diary| diary.date == date } %>
-                <%= image_tag(url_for(@user.stamp_image), alt: 'スタンプ', size: '30x30', class: 'stamp') %>
+                <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '30x30', class: 'stamp') %>
             <% end %>
         </div>
     <% end %>
-  </div>
+</div>
