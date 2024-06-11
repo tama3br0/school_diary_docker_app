@@ -1,7 +1,7 @@
 /* stamps/show.css */
 
 .stamp-card-page {
-    /* background-image: url('/path/to/your/background-image.jpg'); */
+    /* background-image: url('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/top.png'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
