@@ -2,33 +2,33 @@
     <h1>にっきをかく</h1>
 
     <%= form_with model: @diary, local: true, html: { class: 'diary-form' } do |f| %>
-        <div class="date-field">
-            <%= f.hidden_field :date, value: Date.today %>
-            <label>ひづけ</label>
-            <span><%= "#{Date.today.year}ねん#{Date.today.month}がつ#{Date.today.day}にち" %></span>
-        </div>
+      <div class="date-field">
+        <%= f.hidden_field :date, value: Date.today %>
+        <label>ひづけ</label>
+        <span><%= "#{Date.today.year}ねん#{Date.today.month}がつ#{Date.today.day}にち" %></span>
+      </div>
 
-        <% @questions.each do |question| %>
-            <div class="question-container">
-                <h3><%= question.text %></h3>
-                <div class="emotions-container">
-                    <% question.choose_emotions.each do |emotion| %>
-                        <div class="emotion-item">
-                            <%= radio_button_tag "answers[#{question.id}]", emotion.id, false, class: "emotion-radio" %>
-                            <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
-                                <% if emotion.image.attached? %>
-                                    <%= image_tag url_for(emotion.image), alt: emotion.text, class: "emotion-image" %>
-                                <% end %>
-                                <span class="emotion-text"><%= emotion.text %></span>
-                            <% end %>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
-        <% end %>
-
-        <div class="submit-container">
-            <%= f.submit "ていしゅつする", class: "submit-button" %>
+      <% @questions.each do |question| %>
+        <div class="question-container">
+          <h3><%= question.text %></h3>
+          <div class="emotions-container">
+            <% question.choose_emotions.each do |emotion| %>
+              <div class="emotion-item">
+                <%= radio_button_tag "answers[#{question.id}]", emotion.id, false, class: "emotion-radio" %>
+                <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
+                  <% if emotion.image.attached? %>
+                    <%= image_tag url_for(emotion.image), alt: emotion.text, class: "emotion-image" %>
+                  <% end %>
+                  <span class="emotion-text"><%= emotion.text %></span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
+      <% end %>
+
+      <div class="submit-container">
+        <%= f.submit "ていしゅつする", class: "submit-button" %>
+      </div>
     <% end %>
-</div>
+  </div>
