@@ -14,7 +14,13 @@
     <% @students.each do |student| %>
       <% student.diaries.each do |diary| %>
         <tr>
-          <td><%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{student.student_num}" %></td>
+          <td>
+            <% if student.role == 'student' %>
+              <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
+            <% else %>
+              <%= "#{student.grade_class.grade}#{student.grade_class.class_num}せんせい" %>
+            <% end %>
+          </td>
           <td><%= diary.date.strftime("%-m/%-d (%a)") %></td>
           <td>
             <% diary.answers.each do |answer| %>
