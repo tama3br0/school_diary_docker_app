@@ -9,20 +9,16 @@ class DiariesController < ApplicationController
     def create
       # 同じ日の日記がある場合は削除
       current_user.diaries.where(date: diary_params[:date]).destroy_all
-
       @diary = current_user.diaries.build(diary_params)
+
       if @diary.save
         params[:answers].each do |question_id, choose_emotion_id|
-          @diary.answers.create(
-            question_id: question_id,
-            choose_emotion_id: choose_emotion_id
-          )
+          @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
         end
 
         # スタンプを追加
         Stamp.create(user: current_user, diary: @diary)
-
-        redirect_to stamp_path(current_user.id), notice: 'にっきを とうろくしました！'
+        redirect_to stamp_path(current_user.id), notice: 'にっきを ていしゅつしました！'
       else
         @questions = Question.all
         render :new
@@ -42,6 +38,6 @@ class DiariesController < ApplicationController
     private
 
     def diary_params
-      params.require(:diary).permit(:date)
+      params.require(:diary).permit(:date, :image_url)
     end
 end

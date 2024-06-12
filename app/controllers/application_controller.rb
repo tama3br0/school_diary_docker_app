@@ -38,4 +38,4 @@ class ApplicationController < ActionController::Base
         @name = @user.name
       end
     end
-  end
+end

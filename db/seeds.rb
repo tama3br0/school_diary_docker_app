@@ -1,5 +1,7 @@
+# seeds.rb
 require 'json'
 require 'faker'
+require 'aws-sdk-s3'
 
 # インラインジョブキューを有効にする
 Rails.application.config.active_job.queue_adapter = :inline
@@ -29,20 +31,18 @@ questions_data.each_with_index do |question_data, q_index|
       QuestionEmotion.create!(question: question, choose_emotion: emotion)
     end
 
-    if emotion.image.attached?
-      puts "感情画像は既に添付されています"
-    else
+    unless emotion.image.attached? || emotion.image_url.present?
       case emotion_data["text"]
       when "とても たのしかった", "とても よくわかった", "ぜんぶたべて、おかわりもした"
-        emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/very_smile.png')), filename: 'very_smile.png')
+        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/very_smile.png")
       when "たのしかった", "よくわかった", "のこさずに、ぜんぶたべた"
-        emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/smile.png')), filename: 'smile.png')
+        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/smile.png")
       when "すこし たのしかった", "すこし わかった", "へらしたけれど、ぜんぶたべた"
-        emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/normal.png')), filename: 'normal.png')
+        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/normal.png")
       when "たのしくなかった", "わからなかった", "すこし のこしてしまった"
-        emotion.image.attach(io: File.open(Rails.root.join('app/assets/images/shock.png')), filename: 'shock.png')
+        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/shock.png")
       end
-      puts "画像の添付時間: #{Time.now - start_time} 秒"
+      puts "画像の更新時間: #{Time.now - start_time} 秒"
     end
   end
 end

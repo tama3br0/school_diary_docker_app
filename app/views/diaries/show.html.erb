@@ -9,10 +9,14 @@
   <div class="question-container">
     <h3><%= question.text %></h3>
     <% answer = @diary.answers.find_by(question: question) %>
-    <% if answer %>
+    <% if answer && (answer.choose_emotion.image_url.present? || answer.choose_emotion.image.attached?) %>
       <div class="emotions-container">
         <div class="emotion-item">
-          <%= image_tag url_for(answer.choose_emotion.image), alt: answer.choose_emotion.text, size: "50x50" %>
+          <% if answer.choose_emotion.image_url.present? %>
+            <%= image_tag answer.choose_emotion.image_url, alt: answer.choose_emotion.text, size: "50x50" %>
+          <% else %>
+            <%= image_tag url_for(answer.choose_emotion.image), alt: answer.choose_emotion.text, size: "50x50" %>
+          <% end %>
           <span><%= answer.choose_emotion.text %></span>
         </div>
       </div>
