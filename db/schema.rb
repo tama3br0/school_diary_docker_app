@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_084454) do
     t.integer "level", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "diaries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

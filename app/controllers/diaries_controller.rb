@@ -7,7 +7,7 @@ class DiariesController < ApplicationController
     end
 
     def create
-    　# 同じ日の日記がある場合は削除
+      # 同じ日の日記がある場合は削除
       current_user.diaries.where(date: diary_params[:date]).destroy_all
       @diary = current_user.diaries.build(diary_params)
 
@@ -18,7 +18,7 @@ class DiariesController < ApplicationController
 
         # スタンプを追加
         Stamp.create(user: current_user, diary: @diary)
-        redirect_to stamp_path(current_user.id), notice: 'にっきを とうろくしました！'
+        redirect_to stamp_path(current_user.id), notice: 'にっきを ていしゅつしました！'
       else
         @questions = Question.all
         render :new
