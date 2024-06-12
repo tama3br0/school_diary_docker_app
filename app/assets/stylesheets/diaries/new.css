@@ -5,7 +5,7 @@
     margin: 0;
     padding: 20px;
     text-align: center;
-    padding-top: 120px; /* ヘッダーの高さ分のパディングを追加 */
+    padding-top: 600px; /* ヘッダーの高さ分のパディングを追加 */
 }
 
 .diary-page h1 {
