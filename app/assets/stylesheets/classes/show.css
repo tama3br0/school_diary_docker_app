@@ -4,67 +4,67 @@
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
-  }
+}
 
-  .class-diary-page .back-link {
+.class-diary-page .back-link {
     display: block;
     text-align: center;
     margin: 10px 0;
     color: white; /* テキストカラーを白に */
     text-decoration: none;
-  }
+}
 
-  .class-diary-page .back-link:hover {
+.class-diary-page .back-link:hover {
     text-decoration: underline;
-  }
+}
 
-  .class-diary-page .diary-table {
+.class-diary-page .diary-table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: #f1f1f1; /* 表全体の背景色 */
-  }
+}
 
-  .class-diary-page .diary-table th, .class-diary-page .diary-table td {
+.class-diary-page .diary-table th, .class-diary-page .diary-table td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center; /* テキストと画像の中央揃え */
     background-color: #fff; /* カラムの背景色 */
     color: #000; /* テキストの色 */
-  }
+}
 
-  .class-diary-page .diary-table th {
+.class-diary-page .diary-table th {
     background-color: #e9e9e9; /* ヘッダーの背景色 */
-  }
+}
 
-  .class-diary-page .diary-column {
+.class-diary-page .diary-column {
     width: 15%; /* カラムの幅を統一 */
-  }
+}
 
-  .class-diary-page .diary-table td img {
+.class-diary-page .diary-table td img {
     vertical-align: middle;
     width: 20px;
     height: 20px;
-  }
+}
 
-  /* 色を変更するフィルター */
-  .emotion-very-smile img {
-    filter: hue-rotate(300deg) saturate(300%) brightness(150%); /* ピンク色に変更 */
-  }
+/* 色を変更するフィルター */
+.emotion-very-smile img {
+    filter: hue-rotate(300deg) saturate(400%) brightness(200%); /* よりピンク色に変更 */
+}
 
-  .emotion-smile img {
-    filter: hue-rotate(0deg) saturate(300%) brightness(150%); /* 赤色に変更 */
-  }
+.emotion-smile img {
+    filter: hue-rotate(300deg) saturate(300%) brightness(150%); /* 以前のvery-smileの色 */
+}
 
-  .emotion-normal img {
+.emotion-normal img {
     /* そのまま */
-  }
+}
 
-  .emotion-shock img {
+.emotion-shock img {
     filter: hue-rotate(180deg) saturate(300%) brightness(150%); /* 青色に変更 */
-  }
+}
 
-  .button-link {
+.button-link {
     display: inline-block;
     padding: 10px 20px;
     font-size: 1em;
@@ -76,8 +76,8 @@
     text-decoration: none;
     margin: 5px;
     cursor: pointer;
-  }
+}
 
-  .button-link:hover {
+.button-link:hover {
     background-color: #45a049;
-  }
+}
