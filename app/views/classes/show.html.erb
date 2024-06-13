@@ -29,7 +29,7 @@
               <td><%= diary.date.strftime("%-m/%-d (%a)") %></td>
               <% diary.answers.each_with_index do |answer, index| %>
                 <% if index < 4 %>
-                  <td class="diary-column"><%= image_tag answer.choose_emotion.image, class: "emotion-#{answer.choose_emotion.text}", size: "20x20" %></td>
+                  <td class="diary-column emotion-<%= answer.choose_emotion.text %>"><%= image_tag answer.choose_emotion.image, size: "20x20" %></td>
                 <% end %>
               <% end %>
             </tr>
@@ -38,6 +38,7 @@
       </tbody>
     </table>
   </div>
+
 
 
 
