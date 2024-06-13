@@ -1,4 +1,5 @@
-/* /classes/index.css */
+/* classes/index.css */
+
 .class-selection-page .page-title {
     font-size: 2em;
     font-weight: bold;
@@ -10,7 +11,7 @@
     display: block;
     text-align: center;
     margin: 10px 0;
-    color: #4CAF50; /* 緑色 */
+    color: #fff; /* テキストカラーを白に */
     text-decoration: none;
   }
 
@@ -27,24 +28,24 @@
   .class-selection-page .class-link {
     margin: 10px;
     padding: 10px 20px;
-    background-color: #f1f1f1;
+    background-color: #4CAF50; /* 背景色を緑に */
+    color: #fff; /* テキストカラーを白に */
     border: 1px solid #ccc;
     border-radius: 5px;
     text-decoration: none;
-    color: #000;
     display: inline-block;
     text-align: center;
   }
 
   .class-selection-page .class-link:hover {
-    background-color: #ddd;
+    background-color: #45a049; /* ホバー時の背景色を少し暗くする */
   }
 
   .button-link {
     display: inline-block;
     padding: 10px 20px;
     font-size: 1em;
-    color: white;
+    color: #fff; /* テキストカラーを白に */
     background-color: #4CAF50;
     border: none;
     border-radius: 5px;

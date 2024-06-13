@@ -9,10 +9,10 @@
         <tr>
           <th>生徒番号</th>
           <th>日付</th>
-          <th>学校</th>
-          <th>勉強</th>
-          <th>休み時間</th>
-          <th>給食</th>
+          <th class="diary-column">学校</th>
+          <th class="diary-column">勉強</th>
+          <th class="diary-column">休み時間</th>
+          <th class="diary-column">給食</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,7 @@
               <td><%= diary.date.strftime("%-m/%-d (%a)") %></td>
               <% diary.answers.each_with_index do |answer, index| %>
                 <% if index < 4 %>
-                  <td><%= image_tag answer.choose_emotion.image, size: "20x20" %></td>
+                  <td class="diary-column"><%= image_tag answer.choose_emotion.image, class: "emotion-#{answer.choose_emotion.text}", size: "20x20" %></td>
                 <% end %>
               <% end %>
             </tr>
@@ -38,6 +38,7 @@
       </tbody>
     </table>
   </div>
+
 
 
 

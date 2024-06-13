@@ -1,4 +1,5 @@
 /* classes/show.css */
+
 .class-diary-page .page-title {
     font-size: 2em;
     font-weight: bold;
@@ -10,7 +11,7 @@
     display: block;
     text-align: center;
     margin: 10px 0;
-    color: #4CAF50; /* 緑色 */
+    color: white; /* テキストカラーを白に */
     text-decoration: none;
   }
 
@@ -28,7 +29,7 @@
   .class-diary-page .diary-table th, .class-diary-page .diary-table td {
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: left;
+    text-align: center; /* テキストと画像の中央揃え */
     background-color: #fff; /* カラムの背景色 */
     color: #000; /* テキストの色 */
   }
@@ -37,6 +38,44 @@
     background-color: #e9e9e9; /* ヘッダーの背景色 */
   }
 
+  .class-diary-page .diary-column {
+    width: 15%; /* カラムの幅を統一 */
+  }
+
   .class-diary-page .diary-table td img {
     vertical-align: middle;
+  }
+
+  .emotion-very_smile {
+    filter: hue-rotate(330deg); /* ピンク色に変更 */
+  }
+
+  .emotion-smile {
+    filter: hue-rotate(0deg) saturate(2); /* 赤色に変更 */
+  }
+
+  .emotion-normal {
+    /* そのまま */
+  }
+
+  .emotion-shock {
+    filter: hue-rotate(240deg); /* 青色に変更 */
+  }
+
+  .button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white; /* テキストカラーを白に */
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .button-link:hover {
+    background-color: #45a049;
   }
