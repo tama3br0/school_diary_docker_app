@@ -49,11 +49,11 @@
 
 /* 色を変更するフィルター */
 .emotion-very-smile img {
-    filter: hue-rotate(300deg) saturate(400%) brightness(200%); /* よりピンク色に変更 */
+    filter: hue-rotate(320deg) saturate(300%) brightness(150%); /* さらにピンク色に変更 */
 }
 
 .emotion-smile img {
-    filter: hue-rotate(300deg) saturate(300%) brightness(150%); /* 以前のvery-smileの色 */
+    filter: hue-rotate(100deg) saturate(300%) brightness(150%); /* 緑色に変更 */
 }
 
 .emotion-normal img {
