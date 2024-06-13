@@ -1,4 +1,8 @@
 /* classes/show.css */
+.class-diary-page {
+    padding: 20px; /* 周りに余白を追加 */
+}
+
 .class-diary-page .page-title {
     font-size: 2em;
     font-weight: bold;
@@ -20,8 +24,9 @@
 
 .class-diary-page .diary-table {
     width: 100%;
+    max-width: 1000px; /* テーブルの最大幅を指定 */
+    margin: 0 auto; /* 中央寄せ */
     border-collapse: collapse;
-    margin: 20px 0;
     background-color: #f1f1f1; /* 表全体の背景色 */
     table-layout: fixed; /* 各カラムの幅を固定 */
 }
