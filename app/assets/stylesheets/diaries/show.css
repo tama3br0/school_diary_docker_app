@@ -4,8 +4,8 @@
     background-color: #f0f8ff;
     padding: 20px;
     text-align: center;
-    width: 90%; /* 横幅を広く設定 */
-    max-width: 1200px; /* 最大幅を設定 */
+    width: 80%; /* 横幅を広く設定 */
+    max-width: 720px; /* 最大幅を設定 */
     margin: 0 auto; /* 中央揃え */
     margin-top: 420px;  /* 上部の余白を調整 */
 }
