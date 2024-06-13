@@ -26,7 +26,7 @@
                   <%= "#{student.grade_class.grade}#{student.grade_class.class_num}せんせい" %>
                 <% end %>
               </td>
-              <td><%= diary.date.strftime("%-m/%-d (%a)") %></td>
+              <td><%= diary.date.strftime("%-m/%-d") %> (<%= japanese_wday(diary.date) %>)</td>
               <% diary.answers.each_with_index do |answer, index| %>
                 <% if index < 4 %>
                   <% emotion_text = answer.choose_emotion.text %>
