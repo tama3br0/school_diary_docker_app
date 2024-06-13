@@ -30,9 +30,10 @@
               <% diary.answers.each_with_index do |answer, index| %>
                 <% if index < 4 %>
                   <% emotion_class = "emotion-#{answer.choose_emotion.text.parameterize}" %>
+                  <% Rails.logger.info "Emotion text: #{answer.choose_emotion.text}" %>
+                  <% Rails.logger.info "Parameterized emotion class: #{emotion_class}" %>
                   <td class="diary-column <%= emotion_class %>">
                     <%= image_tag answer.choose_emotion.s3_image_url, size: "20x20", class: emotion_class %>
-                    <% Rails.logger.info "Emotion class: #{emotion_class}" %> <!-- ログにデバッグ情報を出力 -->
                   </td>
                 <% end %>
               <% end %>
@@ -42,4 +43,5 @@
       </tbody>
     </table>
   </div>
+
 
