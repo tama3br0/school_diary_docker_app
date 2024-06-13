@@ -3,7 +3,6 @@
     font-family: 'Arial', sans-serif;
     color: black;
     text-align: center;
-    padding-top: 80px; /* ヘッダーの高さ分のパディングを追加 */
     padding-left: 10px;
     padding-right: 10px;
 }
