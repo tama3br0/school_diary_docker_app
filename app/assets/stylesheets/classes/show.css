@@ -53,7 +53,7 @@
 }
 
 .emotion-smile img {
-    filter: hue-rotate(90deg) saturate(300%) brightness(150%); /* まあまあ調子が良いことを感じられる色 */
+    filter: hue-rotate(400deg) saturate(300%) brightness(150%); /* まあまあ調子が良いことを感じられる色 */
 }
 
 .emotion-normal img {
