@@ -1,16 +1,18 @@
 <!-- /classes/show.html.erb -->
-
 <div class="class-diary-page">
     <h1 class="page-title"><%= @grade_class.grade %> - <%= @grade_class.class_num %> の日記一覧</h1>
-    <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'back-link' %>
-    <%= link_to 'クラス選択', classes_path, class: 'back-link' %>
+    <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'back-link button-link' %>
+    <%= link_to 'クラス選択', classes_path, class: 'back-link button-link' %>
 
     <table class="diary-table">
       <thead>
         <tr>
           <th>生徒番号</th>
           <th>日付</th>
-          <th>回答</th>
+          <th>学校</th>
+          <th>勉強</th>
+          <th>休み時間</th>
+          <th>給食</th>
         </tr>
       </thead>
       <tbody>
@@ -25,15 +27,17 @@
                 <% end %>
               </td>
               <td><%= diary.date.strftime("%-m/%-d (%a)") %></td>
-              <td>
-                <% diary.answers.each do |answer| %>
-                  <%= image_tag answer.choose_emotion.image, size: "20x20" %> <%= answer.choose_emotion.text %>
+              <% diary.answers.each_with_index do |answer, index| %>
+                <% if index < 4 %>
+                  <td><%= image_tag answer.choose_emotion.image, size: "20x20" %></td>
                 <% end %>
-              </td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
+
+
 

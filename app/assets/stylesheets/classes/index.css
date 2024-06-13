@@ -1,5 +1,4 @@
 /* /classes/index.css */
-
 .class-selection-page .page-title {
     font-size: 2em;
     font-weight: bold;
@@ -33,8 +32,28 @@
     border-radius: 5px;
     text-decoration: none;
     color: #000;
+    display: inline-block;
+    text-align: center;
   }
 
   .class-selection-page .class-link:hover {
     background-color: #ddd;
+  }
+
+  .button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .button-link:hover {
+    background-color: #45a049;
   }
