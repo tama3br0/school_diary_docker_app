@@ -48,12 +48,12 @@
   }
 
   /* 色を変更するフィルター */
-  .emotion-very_smile img {
-    filter: url(#pinkFilter); /* ピンク色に変更 */
+  .emotion-very-smile img {
+    filter: hue-rotate(300deg) saturate(300%) brightness(150%); /* ピンク色に変更 */
   }
 
   .emotion-smile img {
-    filter: url(#redFilter); /* 赤色に変更 */
+    filter: hue-rotate(0deg) saturate(300%) brightness(150%); /* 赤色に変更 */
   }
 
   .emotion-normal img {
@@ -61,7 +61,7 @@
   }
 
   .emotion-shock img {
-    filter: url(#blueFilter); /* 青色に変更 */
+    filter: hue-rotate(180deg) saturate(300%) brightness(150%); /* 青色に変更 */
   }
 
   .button-link {
@@ -81,30 +81,3 @@
   .button-link:hover {
     background-color: #45a049;
   }
-
-  /* SVGフィルターの定義 */
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-    <defs>
-      <filter id="pinkFilter">
-        <feColorMatrix type="matrix"
-          values="0.393 0.769 0.189 0 0
-                  0.349 0.686 0.168 0 0
-                  0.272 0.534 0.131 0 0
-                  0 0 0 1 0" />
-      </filter>
-      <filter id="redFilter">
-        <feColorMatrix type="matrix"
-          values="1 0 0 0 0
-                  0 0 0 0 0
-                  0 0 0 0 0
-                  0 0 0 1 0" />
-      </filter>
-      <filter id="blueFilter">
-        <feColorMatrix type="matrix"
-          values="0 0 0 0 0
-                  0 0 0 0 0
-                  0 0 1 0 0
-                  0 0 0 1 0" />
-      </filter>
-    </defs>
-  </svg>
