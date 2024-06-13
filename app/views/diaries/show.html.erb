@@ -1,5 +1,4 @@
 <!-- /diaries/show.html.erb -->
-
 <div class="diary-page">
     <h1>にっきをよむ</h1>
     <div class="day-navigation">
@@ -16,9 +15,9 @@
           <div class="emotions-container">
             <div class="emotion-item">
               <% if answer.choose_emotion.image_url.present? %>
-                <%= image_tag answer.choose_emotion.image_url, alt: answer.choose_emotion.text, size: "50x50" %>
+                <%= image_tag answer.choose_emotion.image_url, alt: answer.choose_emotion.text, class: "emotion-image" %>
               <% else %>
-                <%= image_tag url_for(answer.choose_emotion.image), alt: answer.choose_emotion.text, size: "50x50" %>
+                <%= image_tag url_for(answer.choose_emotion.image), alt: answer.choose_emotion.text, class: "emotion-image" %>
               <% end %>
               <span><%= answer.choose_emotion.text %></span>
             </div>
