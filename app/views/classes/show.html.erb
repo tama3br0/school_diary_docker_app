@@ -29,9 +29,24 @@
               <td><%= diary.date.strftime("%-m/%-d (%a)") %></td>
               <% diary.answers.each_with_index do |answer, index| %>
                 <% if index < 4 %>
-                  <% emotion_class = "emotion-#{answer.choose_emotion.text.parameterize}" %>
-                  <% Rails.logger.info "Emotion text: #{answer.choose_emotion.text}" %>
-                  <% Rails.logger.info "Parameterized emotion class: #{emotion_class}" %>
+                  <% emotion_text = answer.choose_emotion.text %>
+                  <% emotion_class = case emotion_text
+                                    when "とても たのしかった" then "emotion-very-smile"
+                                    when "とても よくわかった" then "emotion-very-smile"
+                                    when "ぜんぶたべて、おかわりもした" then "emotion-very-smile"
+                                    when "たのしかった" then "emotion-smile"
+                                    when "よくわかった" then "emotion-smile"
+                                    when "のこさずに、ぜんぶたべた" then "emotion-smile"
+                                    when "すこし たのしかった" then "emotion-normal"
+                                    when "すこし わかった" then "emotion-normal"
+                                    when "へらしたけれど、ぜんぶたべた" then "emotion-normal"
+                                    when "たのしくなかった" then "emotion-shock"
+                                    when "わからなかった" then "emotion-shock"
+                                    when "すこし のこしてしまった" then "emotion-shock"
+                                    else "emotion-default"
+                                    end %>
+                  <%= Rails.logger.info "Emotion text: #{emotion_text}" %>
+                  <%= Rails.logger.info "Emotion class: #{emotion_class}" %>
                   <td class="diary-column <%= emotion_class %>">
                     <%= image_tag answer.choose_emotion.s3_image_url, size: "20x20", class: emotion_class %>
                   </td>
@@ -43,5 +58,3 @@
       </tbody>
     </table>
   </div>
-
-
