@@ -1,5 +1,4 @@
 /* classes/show.css */
-
 .class-diary-page .page-title {
     font-size: 2em;
     font-weight: bold;
@@ -44,22 +43,25 @@
 
   .class-diary-page .diary-table td img {
     vertical-align: middle;
+    width: 20px;
+    height: 20px;
   }
 
-  .emotion-very_smile {
-    filter: hue-rotate(330deg); /* ピンク色に変更 */
+  /* 色を変更するフィルター */
+  .emotion-very_smile img {
+    filter: hue-rotate(300deg) saturate(300%) brightness(150%); /* ピンク色に変更 */
   }
 
-  .emotion-smile {
-    filter: hue-rotate(0deg) saturate(2); /* 赤色に変更 */
+  .emotion-smile img {
+    filter: hue-rotate(0deg) saturate(300%) brightness(150%); /* 赤色に変更 */
   }
 
-  .emotion-normal {
+  .emotion-normal img {
     /* そのまま */
   }
 
-  .emotion-shock {
-    filter: hue-rotate(240deg); /* 青色に変更 */
+  .emotion-shock img {
+    filter: hue-rotate(180deg) saturate(300%) brightness(150%); /* 青色に変更 */
   }
 
   .button-link {

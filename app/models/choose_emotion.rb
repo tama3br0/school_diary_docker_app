@@ -4,6 +4,10 @@ class ChooseEmotion < ApplicationRecord
 
     # ActiveStorageも残す(これまで投稿した分があるため)
     has_one_attached :image
-    # 新しく追加
+
     validates :image_url, presence: true
+
+    def s3_image_url
+      "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/#{image.filename}" if image.attached?
+    end
 end
