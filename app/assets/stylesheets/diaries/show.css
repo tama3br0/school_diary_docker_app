@@ -4,6 +4,9 @@
     background-color: #f0f8ff;
     padding: 20px;
     text-align: center;
+    width: 90%; /* 横幅を広く設定 */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 0 auto; /* 中央揃え */
     margin-top: 420px;  /* 上部の余白を調整 */
 }
 
@@ -59,8 +62,6 @@
 .emotion-item img {
     display: block;
     margin: 0 auto 10px;
-    filter: grayscale(100%); /* 画像を白黒に */
-    transition: filter 0s ease-in-out;
     width: 50px; /* 画像の大きさを50pxに固定 */
     height: 50px; /* 画像の大きさを50pxに固定 */
 }
