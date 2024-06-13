@@ -47,6 +47,10 @@
     height: 20px;
 }
 
+.class-diary-page .student-number {
+    font-size: 0.9em; /* 文字サイズを調整 */
+}
+
 /* 色を変更するフィルター */
 .emotion-very-smile img {
     filter: hue-rotate(300deg) saturate(400%) brightness(200%); /* よりピンク色に変更 */

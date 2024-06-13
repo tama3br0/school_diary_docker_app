@@ -19,7 +19,7 @@
         <% @students.each do |student| %>
           <% student.diaries.each do |diary| %>
             <tr>
-              <td>
+              <td class="student-number">
                 <% if student.role == 'student' %>
                   <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
                 <% else %>
@@ -45,8 +45,8 @@
                                     when "すこし のこしてしまった" then "emotion-shock"
                                     else "emotion-default"
                                     end %>
-                  <%# Rails.logger.info "Emotion text: #{emotion_text}" %>
-                  <%# Rails.logger.info "Emotion class: #{emotion_class}" %>
+                  <%= Rails.logger.info "Emotion text: #{emotion_text}" %>
+                  <%= Rails.logger.info "Emotion class: #{emotion_class}" %>
                   <td class="diary-column <%= emotion_class %>">
                     <%= image_tag answer.choose_emotion.s3_image_url, size: "20x20", class: emotion_class %>
                   </td>
