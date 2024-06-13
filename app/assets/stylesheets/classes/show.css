@@ -1,0 +1,40 @@
+/* classes/show.css */
+
+.class-diary-page .page-title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .class-diary-page .back-link {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    color: #4CAF50; /* 緑色 */
+    text-decoration: none;
+  }
+
+  .class-diary-page .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .class-diary-page .diary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+
+  .class-diary-page .diary-table th, .class-diary-page .diary-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+
+  .class-diary-page .diary-table th {
+    background-color: #f9f9f9;
+  }
+
+  .class-diary-page .diary-table td img {
+    vertical-align: middle;
+  }

@@ -11,4 +11,6 @@
  *= require diaries/choose_diary
  *= require diaries/show
  *= require stamps/show
+ *= require classes/index
+ *= require classes/show
  */
