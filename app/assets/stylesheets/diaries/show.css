@@ -2,11 +2,10 @@
 .diary-page {
     font-family: 'Arial', sans-serif;
     background-color: #f0f8ff;
-    margin: 0;
     padding: 20px;
     text-align: center;
-    padding-top: 120px; /* ヘッダーの高さ分のパディングを追加 */
-  }
+    margin-top: 420px;  /* ヘッダーの高さ分のマージンを追加 */
+}
 
   .diary-page h1 {
     font-size: 2em;
