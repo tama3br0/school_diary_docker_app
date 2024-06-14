@@ -27,7 +27,9 @@ class DiariesController < ApplicationController
 
     def choose_diary
       date = params[:date]&.to_date || Date.today
-      @diaries = current_user.diaries.order(date: :desc).group_by { |d| d.date.beginning_of_week(:monday) }
+      start_of_week = date.beginning_of_week(:monday)
+      end_of_week = date.end_of_week(:sunday)
+      @diaries = current_user.diaries.where(date: start_of_week..end_of_week).order(:date)
     end
 
     def show
