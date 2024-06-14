@@ -11,7 +11,7 @@
 
     <%= japanese_month_calendar do |date| %>
       <div class="day">
-        <div class="date-number"><%= date.day %></div>
+        <!-- <div class="date-number"><%= date.day %></div> -->
         <% if @diaries.any? { |diary| diary.date == date } %>
           <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '50x50', class: 'stamp') %>
         <% end %>
@@ -20,8 +20,9 @@
   </div>
 
   <div class="calendar-navigation">
-    <%= link_to 'せんげつ', params.merge(month: (@date - 1.month).month, year: (@date - 1.month).year) %>
-    <%= link_to 'こんげつ', params.merge(month: Date.today.month, year: Date.today.year) %>
-    <%= link_to 'らいげつ', params.merge(month: (@date + 1.month).month, year: (@date + 1.month).year) %>
+    <%= link_to 'せんげつ', @permitted_params.merge(month: (@date - 1.month).month, year: (@date - 1.month).year) %>
+    <%= link_to 'こんげつ', @permitted_params.merge(month: Date.today.month, year: Date.today.year) %>
+    <%= link_to 'らいげつ', @permitted_params.merge(month: (@date + 1.month).month, year: (@date + 1.month).year) %>
   </div>
+
 

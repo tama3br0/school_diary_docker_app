@@ -5,5 +5,6 @@ class StampsController < ApplicationController
       @user = User.find(params[:id])
       @diaries = @user.diaries.includes(:stamps)
       @date = Date.today
+      @permitted_params = params.permit(:month, :year)
     end
 end
