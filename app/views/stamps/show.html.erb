@@ -19,7 +19,7 @@
       <% start_date.step(end_date).each_slice(7) do |week| %>
         <div class="week">
           <% week.each do |date| %>
-            <div class="day">
+            <div class="day <%= 'today' if date == Date.today %>">
               <div class="date-number"><%= date.day %></div>
               <% if @diaries.any? { |diary| diary.date == date } %>
                 <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '50x50', class: 'stamp') %>

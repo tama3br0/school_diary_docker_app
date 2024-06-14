@@ -36,28 +36,43 @@
 .stamp-card-page .month-year {
     text-align: center;
     margin: 10px 0;
-}
-
-.stamp-card-page .month-year .big-month {
     font-size: 1.5em;
-    font-weight: bold;
 }
 
-.stamp-card-page .day {
-    position: relative;
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
+.week {
+    display: contents;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     border: 1px solid #ddd;
     padding: 10px;
-    margin: 5px;
     background-color: #f9f9f9;
     border-radius: 5px;
+    height: 100px;
 }
 
-.stamp-card-page .date-number {
-    margin-bottom: 10px;
+.day.today {
+    background-color: #ffeaa7;
 }
 
-.stamp-card-page .day img {
-    position: relative;
-    top: 10px;
+.date-number {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.stamp {
+    margin-top: 5px;
 }
