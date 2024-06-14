@@ -15,17 +15,17 @@
 
     <div class="calendar">
       <div class="day-names">
-        <% japanese_day_names.each_with_index do |day_name, index| %>
-          <div class="day-name <%= day_color_class(index) %>"><%= day_name %></div>
+        <% japanese_day_names.each do |day_name| %>
+          <div class="day-name"><%= day_name %></div>
         <% end %>
       </div>
 
       <% @calendar.each do |week| %>
         <div class="week">
-          <% week.each do |date, stamp| %>
+          <% week.each do |date| %>
             <div class="day <%= 'today' if date == Date.today %>">
               <div class="date-number <%= day_color_class(date.wday) %>"><%= date.day %></div>
-              <% if stamp.present? %>
+              <% if stamp_for_date(@user, date) %>
                 <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '50x50', class: 'stamp') %>
               <% end %>
             </div>
