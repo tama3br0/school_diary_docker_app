@@ -61,6 +61,11 @@
     padding: 10px;
   }
 
+  .week {
+    display: flex;
+    flex-direction: row; /* 日付を横に並べる */
+  }
+
   .day {
     display: flex;
     flex-direction: column;
