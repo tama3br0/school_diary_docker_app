@@ -44,6 +44,7 @@ class DiariesController < ApplicationController
     end
 
 
+
     def show
       @diary = current_user.diaries.find(params[:id])
       @questions = @diary.answers.includes(:question, :choose_emotion).map(&:question).uniq

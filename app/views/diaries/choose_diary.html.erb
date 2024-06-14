@@ -9,7 +9,13 @@
       <%= link_to 'つぎの しゅう', choose_diary_diaries_path(date: @date + 7.days), class: 'button week-nav-button next-week-button' %>
     </div>
 
-    <h2><%= @current_week_range.first.strftime('%-mがつ%-dにち(%a)').sub('Mon', 'げつ').sub('Tue', 'か').sub('Wed', 'すい').sub('Thu', 'もく').sub('Fri', 'きん').sub('Sat', 'ど').sub('Sun', 'にち') %> - <%= @current_week_range.last.strftime('%-mがつ%-dにち(%a)').sub('Mon', 'げつ').sub('Tue', 'か').sub('Wed', 'すい').sub('Thu', 'もく').sub('Fri', 'きん').sub('Sat', 'ど').sub('Sun', 'にち') %></h2>
+    <h2>
+        <%= @current_week_range.first.strftime('%-mがつ%-dにち(%a)').sub('Mon', 'げつ').sub('Tue', 'か').sub('Wed', 'すい').sub('Thu', 'もく').sub('Fri', 'きん').sub('Sat', 'ど').sub('Sun', 'にち') %> -
+        <%= @current_week_range.last.strftime('%-mがつ%-dにち(%a)').sub('Mon', 'げつ').sub('Tue', 'か').sub('Wed', 'すい').sub('Thu', 'もく').sub('Fri', 'きん').sub('Sat', 'ど').sub('Sun', 'にち') %>
+    </h2>
+
+    <p>週の開始日: <%= @current_week_range.first %></p>
+    <p>週の終了日: <%= @current_week_range.last %></p>
 
     <ul>
       <% if @diaries.present? %>
