@@ -22,10 +22,10 @@
 
       <% @calendar.each_slice(7) do |week| %>
         <div class="week">
-          <% week.each do |date, stamps| %>
+          <% week.each do |date, stamp| %>
             <div class="day <%= 'today' if date == Date.today %>">
               <div class="date-number <%= day_color_class(date.wday) %>"><%= date.day %></div>
-              <% if stamps.present? %>
+              <% if stamp.present? %>
                 <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '50x50', class: 'stamp') %>
               <% end %>
             </div>
@@ -34,3 +34,4 @@
       <% end %>
     </div>
   </div>
+

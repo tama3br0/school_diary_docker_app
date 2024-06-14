@@ -46,6 +46,9 @@
     gap: 10px;
     margin: 20px auto;
     max-width: 700px;
+    background-color: rgba(255, 255, 255, 0.8); /* カレンダー全体に薄い白の背景色を設定 */
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .day-names {
@@ -85,30 +88,30 @@
     margin-top: 5px;
 }
 
-.sunday .date-number, .sunday .day-name {
+.sunday {
     color: #778899; /* 日曜日: ライトスレートグレー */
 }
 
-.monday .date-number, .monday .day-name {
+.monday {
     color: #9370db; /* 月曜日: ミディアムパープル */
 }
 
-.tuesday .date-number, .tuesday .day-name {
+.tuesday {
     color: #cd5c5c; /* 火曜日: インディアンレッド */
 }
 
-.wednesday .date-number, .wednesday .day-name {
+.wednesday {
     color: #4682b4; /* 水曜日: スチールブルー */
 }
 
-.thursday .date-number, .thursday .day-name {
+.thursday {
     color: #6b8e23; /* 木曜日: オリーブドラブ */
 }
 
-.friday .date-number, .friday .day-name {
+.friday {
     color: #ffd700; /* 金曜日: ゴールド */
 }
 
-.saturday .date-number, .saturday .day-name {
+.saturday {
     color: #ffa07a; /* 土曜日: ライトサーモン */
 }

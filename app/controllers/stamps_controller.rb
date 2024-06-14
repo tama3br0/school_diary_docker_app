@@ -22,16 +22,12 @@ class StampsController < ApplicationController
     def generate_calendar(date)
       start_date = date.beginning_of_month.beginning_of_week(:sunday)
       end_date = date.end_of_month.end_of_week(:sunday)
-      (start_date..end_date).map do |date|
-        [date, stamp_for_date(@user, date)]
-      end
+      (start_date..end_date).to_a.each_slice(7).to_a
     end
 
     def stamp_for_date(user, date)
+      # 日付に対するスタンプを取得するロジックをここに追加
+      # 例: user.diaries.find_by(date: date).present?
       user.diaries.find_by(date: date).present? ? 'stamp_image_url' : nil
-    end
-
-    def japanese_day_names
-      %w[にち げつ か すい もく きん ど]
     end
 end
