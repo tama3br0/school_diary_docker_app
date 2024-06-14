@@ -1,5 +1,4 @@
 /* stamps/show.css */
-
 .stamp-card-page {
     /* background-image: url('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/top.png'); */
     background-size: cover;
@@ -30,6 +29,16 @@
     background-color: #0056b3;
 }
 
+.stamp-card-page .month-year {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.stamp-card-page .month-year .big-month {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .stamp-card-page .day {
     position: relative;
     text-align: center;
@@ -40,8 +49,11 @@
     border-radius: 5px;
 }
 
+.stamp-card-page .date-number {
+    margin-bottom: 10px;
+}
+
 .stamp-card-page .day img {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    position: relative;
+    top: 10px;
 }

@@ -1,16 +1,22 @@
 <!-- app/views/stamps/show.html.erb -->
 
 <div class="stamp-card-page">
-    <h1><%= @user.name %>のスタンプカード</h1>
+    <h1><%= display_user_info(@user) %>のスタンプカード</h1>
 
     <%= link_to 'ホームに戻る', authenticated_root_path, class: 'btn btn-primary' %>
 
-    <%= month_calendar do |date| %>
+    <div class="month-year">
+        <small><%= @date.year %>ねん</small>
+        <span class="big-month"><%= @date.strftime('%-m') %>がつ</span>
+    </div>
+
+    <%= japanese_month_calendar do |date| %>
         <div class="day">
-            <%= date.day %>
+            <div class="date-number"><%= date.day %></div>
             <% if @diaries.any? { |diary| diary.date == date } %>
                 <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '30x30', class: 'stamp') %>
             <% end %>
         </div>
     <% end %>
 </div>
+
