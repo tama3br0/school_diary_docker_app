@@ -1,3 +1,4 @@
+# stamps_controller.rb
 class StampsController < ApplicationController
     before_action :authenticate_user!
 
@@ -27,8 +28,6 @@ class StampsController < ApplicationController
     end
 
     def stamp_for_date(user, date)
-      # 日付に対するスタンプを取得するロジックをここに追加
-      # 例: user.diaries.find_by(date: date).present?
       user.diaries.find_by(date: date).present? ? 'stamp_image_url' : nil
     end
 

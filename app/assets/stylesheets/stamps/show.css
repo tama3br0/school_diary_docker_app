@@ -85,30 +85,30 @@
     margin-top: 5px;
 }
 
-.day-name:nth-child(1), .day:nth-child(7n + 1) .date-number {
+.sunday .date-number, .sunday .day-name {
     color: #778899; /* 日曜日: ライトスレートグレー */
 }
 
-.day-name:nth-child(2), .day:nth-child(7n + 2) .date-number {
+.monday .date-number, .monday .day-name {
     color: #9370db; /* 月曜日: ミディアムパープル */
 }
 
-.day-name:nth-child(3), .day:nth-child(7n + 3) .date-number {
+.tuesday .date-number, .tuesday .day-name {
     color: #cd5c5c; /* 火曜日: インディアンレッド */
 }
 
-.day-name:nth-child(4), .day:nth-child(7n + 4) .date-number {
+.wednesday .date-number, .wednesday .day-name {
     color: #4682b4; /* 水曜日: スチールブルー */
 }
 
-.day-name:nth-child(5), .day:nth-child(7n + 5) .date-number {
+.thursday .date-number, .thursday .day-name {
     color: #6b8e23; /* 木曜日: オリーブドラブ */
 }
 
-.day-name:nth-child(6), .day:nth-child(7n + 6) .date-number {
+.friday .date-number, .friday .day-name {
     color: #ffd700; /* 金曜日: ゴールド */
 }
 
-.day-name:nth-child(7), .day:nth-child(7n) .date-number {
+.saturday .date-number, .saturday .day-name {
     color: #ffa07a; /* 土曜日: ライトサーモン */
 }
