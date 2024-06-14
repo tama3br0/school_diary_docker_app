@@ -12,7 +12,11 @@ module StampsHelper
         if user.role == 'teacher'
             "#{user.name}せんせい"
         else
-            "#{user.grade_class.grade}ねん#{user.grade_class.class_number}くみ #{user.student_num}ばん"
+            "#{user.grade_class.grade}ねん#{user.grade_class.class_num}くみ #{user.student_num}ばん"
         end
+    end
+
+    def display_month_year(date)
+        "#{date.year}ねん #{date.month}がつ"
     end
 end
