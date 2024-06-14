@@ -1,25 +1,24 @@
 /* stamps/show.css */
-
 .calendar .fc-header-toolbar {
     display: none;
-  }
+}
 
-  .stamp-card-page {
+.stamp-card-page {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: #333;
     font-family: Arial, sans-serif;
     margin-top: 420px;
-  }
+}
 
-  .stamp-card-page h1 {
+.stamp-card-page h1 {
     text-align: center;
     margin-top: 20px;
     font-size: 2.5em;
-  }
+}
 
-  .stamp-card-page .btn {
+.stamp-card-page .btn {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
@@ -28,19 +27,19 @@
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
-  }
+}
 
-  .stamp-card-page .btn:hover {
+.stamp-card-page .btn:hover {
     background-color: #0056b3;
-  }
+}
 
-  .stamp-card-page .month-year {
+.stamp-card-page .month-year {
     text-align: center;
     margin: 10px 0;
     font-size: 1.5em;
-  }
+}
 
-  .calendar {
+.calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
@@ -49,24 +48,23 @@
     background-color: rgba(255, 255, 255, 0.8); /* カレンダー全体に薄い白の背景色を設定 */
     padding: 10px;
     border-radius: 10px;
-  }
+}
 
-  .day-names {
+.day-names {
     display: contents;
-  }
+}
 
-  .day-name {
+.day-name {
     text-align: center;
     font-weight: bold;
     padding: 10px;
-  }
+}
 
-  .week {
-    display: flex;
-    flex-direction: row; /* 日付を横に並べる */
-  }
+.week {
+    display: contents; /* これにより、日付が上から下ではなく、左から右に並ぶようになります */
+}
 
-  .day {
+.day {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,46 +75,46 @@
     background-color: #f9f9f9;
     border-radius: 5px;
     height: 100px;
-  }
+}
 
-  .day.today {
+.day.today {
     background-color: #ffeaa7;
-  }
+}
 
-  .date-number {
+.date-number {
     margin-bottom: 5px;
     font-size: 1.2em;
     font-weight: bold;
-  }
+}
 
-  .stamp {
+.stamp {
     margin-top: 5px;
-  }
+}
 
-  .sunday {
+.sunday {
     color: #778899; /* 日曜日: ライトスレートグレー */
-  }
+}
 
-  .monday {
+.monday {
     color: #9370db; /* 月曜日: ミディアムパープル */
-  }
+}
 
-  .tuesday {
+.tuesday {
     color: #cd5c5c; /* 火曜日: インディアンレッド */
-  }
+}
 
-  .wednesday {
+.wednesday {
     color: #4682b4; /* 水曜日: スチールブルー */
-  }
+}
 
-  .thursday {
+.thursday {
     color: #6b8e23; /* 木曜日: オリーブドラブ */
-  }
+}
 
-  .friday {
+.friday {
     color: #ffd700; /* 金曜日: ゴールド */
-  }
+}
 
-  .saturday {
+.saturday {
     color: #ffa07a; /* 土曜日: ライトサーモン */
-  }
+}
