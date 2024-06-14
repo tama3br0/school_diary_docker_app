@@ -1,7 +1,6 @@
 <!-- app/views/stamps/show.html.erb -->
 <div class="stamp-card-page">
     <h1><%= display_user_info(@user) %>のスタンプカード</h1>
-
     <%= link_to 'ホームに戻る', authenticated_root_path, class: 'btn btn-primary' %>
 
     <div class="calendar-navigation">
@@ -10,18 +9,23 @@
       <%= link_to 'らいげつ', params.permit(:month, :year).merge(month: (@date + 1.month).month, year: (@date + 1.month).year) %>
     </div>
 
-    <h2 class="month-year"><%= display_month_year(@date) %></h2>
+    <div class="month-year">
+      <%= display_month_year(@date) %>
+    </div>
 
     <div class="calendar">
-      <% start_date = @date.beginning_of_month.beginning_of_week(:sunday) %>
-      <% end_date = @date.end_of_month.end_of_week(:sunday) %>
+      <div class="day-names">
+        <% japanese_day_names.each do |day_name| %>
+          <div class="day-name"><%= day_name %></div>
+        <% end %>
+      </div>
 
-      <% start_date.step(end_date).each_slice(7) do |week| %>
+      <% @calendar.each_slice(7) do |week| %>
         <div class="week">
-          <% week.each do |date| %>
+          <% week.each do |date, stamps| %>
             <div class="day <%= 'today' if date == Date.today %>">
               <div class="date-number"><%= date.day %></div>
-              <% if @diaries.any? { |diary| diary.date == date } %>
+              <% if stamps.present? %>
                 <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '50x50', class: 'stamp') %>
               <% end %>
             </div>
