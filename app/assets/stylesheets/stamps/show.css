@@ -109,6 +109,6 @@
     color: #ffd700; /* 金曜日: ゴールド */
 }
 
-.day-name:nth-child(7), .day:nth-child(7n + 7) .date-number {
+.day-name:nth-child(7), .day:nth-child(7n) .date-number {
     color: #ffa07a; /* 土曜日: ライトサーモン */
 }
