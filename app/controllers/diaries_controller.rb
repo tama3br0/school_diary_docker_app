@@ -26,11 +26,15 @@ class DiariesController < ApplicationController
     end
 
     def choose_diary
-      @date = params[:date]&.to_date || Date.today
-      start_of_week = @date.beginning_of_week(:monday)
-      end_of_week = @date.end_of_week(:sunday)
-      @diaries = current_user.diaries.where(date: start_of_week..end_of_week).order(:date)
+        @date = params[:date]&.to_date || Date.today
+        start_of_week = @date.beginning_of_week(:monday)
+        end_of_week = @date.end_of_week(:sunday)
+        Rails.logger.debug "Start of week: #{start_of_week}, End of week: #{end_of_week}"
+        @diaries = current_user.diaries.where(date: start_of_week..end_of_week).order(:date)
+        Rails.logger.debug "Diaries: #{@diaries.inspect}"
     end
+
+
 
     def show
       @diary = current_user.diaries.find(params[:id])
