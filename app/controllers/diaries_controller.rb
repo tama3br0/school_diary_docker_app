@@ -26,13 +26,23 @@ class DiariesController < ApplicationController
     end
 
     def choose_diary
-      @date = params[:date]&.to_date || Date.today
-      start_of_week = @date.beginning_of_week(:monday)
-      end_of_week = @date.end_of_week(:sunday)
-      Rails.logger.debug "週の開始日: #{start_of_week}, 週の終了日: #{end_of_week}"
-      @diaries = current_user.diaries.where(date: start_of_week..end_of_week).order(:date)
-      Rails.logger.debug "取得した日記: #{@diaries.map(&:date)}"
+        @date = params[:date]&.to_date || Date.today
+        # 現在の週の範囲を設定
+        start_of_week = @date.beginning_of_week(:monday)
+        end_of_week = @date.end_of_week(:sunday)
+
+        # 前週、今週、来週の範囲を設定
+        @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days)
+        @current_week_range = start_of_week..end_of_week
+        @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days)
+
+        # 現在の週の日記を取得
+        @diaries = current_user.diaries.where(date: @current_week_range).order(:date)
+
+        Rails.logger.debug "週の開始日: #{start_of_week}, 週の終了日: #{end_of_week}"
+        Rails.logger.debug "取得した日記: #{@diaries.map(&:date)}"
     end
+
 
     def show
       @diary = current_user.diaries.find(params[:id])
