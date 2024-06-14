@@ -1,4 +1,5 @@
 /* stamps/show.css */
+
 .calendar .fc-header-toolbar {
     display: none;
 }
@@ -44,25 +45,17 @@
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
     margin: 20px;
+    width: auto;
 }
 
 .day-names {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin: 20px;
-    font-weight: bold;
-    text-align: center;
+    display: contents;
 }
 
 .day-name {
+    text-align: center;
+    font-weight: bold;
     padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-}
-
-.week {
-    display: contents;
 }
 
 .day {
@@ -90,4 +83,32 @@
 
 .stamp {
     margin-top: 5px;
+}
+
+.day-name:nth-child(1), .day:nth-child(7n + 1) {
+    color: #778899; /* 日曜日: ライトスレートグレー */
+}
+
+.day-name:nth-child(2), .day:nth-child(7n + 2) {
+    color: #9370db; /* 月曜日: ミディアムパープル */
+}
+
+.day-name:nth-child(3), .day:nth-child(7n + 3) {
+    color: #cd5c5c; /* 火曜日: インディアンレッド */
+}
+
+.day-name:nth-child(4), .day:nth-child(7n + 4) {
+    color: #4682b4; /* 水曜日: スチールブルー */
+}
+
+.day-name:nth-child(5), .day:nth-child(7n + 5) {
+    color: #6b8e23; /* 木曜日: オリーブドラブ */
+}
+
+.day-name:nth-child(6), .day:nth-child(7n + 6) {
+    color: #ffd700; /* 金曜日: ゴールド */
+}
+
+.day-name:nth-child(7), .day:nth-child(7n + 7) {
+    color: #ffa07a; /* 土曜日: ライトサーモン */
 }
