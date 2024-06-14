@@ -26,4 +26,8 @@ module StampsHelper
       when 6 then 'saturday'
       end
     end
+
+    def stamp_for_date(user, date)
+      user.diaries.find_by(date: date).present? ? 'stamp_image_url' : nil
+    end
 end
