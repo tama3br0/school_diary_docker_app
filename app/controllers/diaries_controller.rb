@@ -31,9 +31,9 @@ class DiariesController < ApplicationController
         end_of_week = @date.end_of_week(:sunday)
 
         # 範囲に1日追加してみる
-        @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days + 1.day)
-        @current_week_range = start_of_week..(end_of_week + 1.day)
-        @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days + 1.day)
+        @previous_week_range = (start_of_week - 7.days)...(end_of_week - 7.days)
+        @current_week_range = start_of_week...end_of_week
+        @next_week_range = (start_of_week + 7.days)...(end_of_week + 7.days)
 
         Rails.logger.debug "start_of_week: #{start_of_week}, end_of_week: #{end_of_week}"
         Rails.logger.debug "@current_week_range: #{@current_week_range}"
