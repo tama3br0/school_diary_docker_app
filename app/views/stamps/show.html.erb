@@ -20,7 +20,7 @@
         <% end %>
       </div>
 
-      <% @calendar.each_slice(7) do |week| %>
+      <% @calendar.each do |week| %>
         <div class="week">
           <% week.each do |date, stamp| %>
             <div class="day <%= 'today' if date == Date.today %>">
@@ -34,4 +34,3 @@
       <% end %>
     </div>
   </div>
-
