@@ -9,10 +9,10 @@ module StampsHelper
     end
 
     def display_user_info(user)
-      if user.teacher?
-        user.name
-      else
-        "#{user.grade}年#{user.class_num}組 #{user.student_num}番"
-      end
+        if user.role == 'teacher'
+            "#{user.name}せんせい"
+        else
+            "#{user.grade_class.grade}ねん#{user.grade_class.class_number}くみ #{user.student_num}ばん"
+        end
     end
 end

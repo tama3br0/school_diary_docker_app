@@ -5,16 +5,23 @@
     <%= link_to 'ホームに戻る', authenticated_root_path, class: 'btn btn-primary' %>
 
     <div class="month-year">
-        <small><%= @date.year %>ねん</small>
-        <span class="big-month"><%= @date.strftime('%-m') %>がつ</span>
+      <small><%= @date.year %>ねん</small>
+      <span class="big-month"><%= @date.strftime('%-m') %>がつ</span>
     </div>
 
     <%= japanese_month_calendar do |date| %>
-        <div class="day">
-            <div class="date-number"><%= date.day %></div>
-            <% if @diaries.any? { |diary| diary.date == date } %>
-                <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '30x30', class: 'stamp') %>
-            <% end %>
-        </div>
+      <div class="day">
+        <!-- <div class="date-number"><%= date.day %></div> -->
+        <% if @diaries.any? { |diary| diary.date == date } %>
+          <%= image_tag('https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/stamp.png', alt: 'スタンプ', size: '50x50', class: 'stamp') %>
+        <% end %>
+      </div>
     <% end %>
-</div>
+  </div>
+
+  <div class="calendar-navigation">
+    <%= link_to 'せんげつ', params.merge(month: (@date - 1.month).month, year: (@date - 1.month).year) %>
+    <%= link_to 'こんげつ', params.merge(month: Date.today.month, year: Date.today.year) %>
+    <%= link_to 'らいげつ', params.merge(month: (@date + 1.month).month, year: (@date + 1.month).year) %>
+  </div>
+
