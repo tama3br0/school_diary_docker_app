@@ -27,6 +27,15 @@ class ApplicationController < ActionController::Base
       unauthenticated_root_path
     end
 
+    def after_sign_in_path_for(resource)
+      if resource.additional_info_provided
+        flash[:notice] = 'ログイン しました！'
+        authenticated_root_path
+      else
+        additional_info_path
+      end
+    end
+
     def set_user_info
       @user = current_user
       if @user.grade_class.present?
