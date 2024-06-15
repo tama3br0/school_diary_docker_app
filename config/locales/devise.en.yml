@@ -28,6 +28,8 @@ ja:
     omniauth_callbacks:
       failure: "%{kind}での にんしょう に しっぱい しました。りゆう：\"%{reason}\"。"
       success: "%{kind}アカウントで せいこう に にんしょう されました。"
+      login_success: "ログインしました！"
+      additional_info_required: "データを とうろく しよう！"
     passwords:
       no_token: "パスワード リセット メールから アクセス していないばあい、この ページ に アクセス することは できません。 パスワード リセット メールから アクセス しているばあいは、 ていきょうされたURL ぜんたい を つかっていることを かくにん してください。"
       send_instructions: "しばらくすると、 パスワード リセット の てじゅん が かいてある メールが とどきます。"
