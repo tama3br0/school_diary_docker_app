@@ -11,6 +11,7 @@ class DiariesController < ApplicationController
       current_user.diaries.where(date: diary_params[:date]).destroy_all
       @diary = current_user.diaries.build(diary_params)
 
+      # すべての質問に対して回答が提供されているかをチェック
       missing_answers = params[:answers].values.include?("")
 
       if missing_answers
@@ -22,7 +23,6 @@ class DiariesController < ApplicationController
           @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
         end
 
-        # スタンプを追加
         Stamp.create(user: current_user, diary: @diary)
         redirect_to stamp_path(current_user.id), notice: 'にっきを ていしゅつしました！'
       else
@@ -36,7 +36,6 @@ class DiariesController < ApplicationController
       start_of_week = @date.beginning_of_week(:monday)
       end_of_week = @date.end_of_week(:sunday)
 
-      # 範囲に1日追加して日曜日を手に入れる
       @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days + 1.day)
       @current_week_range = start_of_week..(end_of_week + 1.day)
       @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days + 1.day)
