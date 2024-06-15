@@ -4,6 +4,7 @@
  *= require reset
  *= require global
  *= require header
+ *= require flash
  *= require static_pages/home
  *= require home/index
  *= require users/additional_info
