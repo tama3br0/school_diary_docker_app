@@ -17,15 +17,4 @@ class Diary < ApplicationRecord
       user.diaries.where('date > ?', date).order(date: :asc).first
     end
 
-    private
-
-    def all_questions_answered
-      questions = Question.all
-      answered_question_ids = answers.map(&:question_id)
-      unanswered_questions = questions.reject { |q| answered_question_ids.include?(q.id) }
-
-      if unanswered_questions.any?
-        errors.add(:base, 'こたえていない しつもんがあるよ')
-      end
-    end
 end
