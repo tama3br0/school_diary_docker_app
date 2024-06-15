@@ -3,8 +3,6 @@ class User < ApplicationRecord
     has_many :diaries, dependent: :destroy
     has_many :stamps
 
-
-
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable,
            :omniauthable, omniauth_providers: [:google_oauth2]
@@ -30,5 +28,9 @@ class User < ApplicationRecord
 
     def teacher?
         role == 'teacher'
+    end
+
+    def diary_for_date(date)
+        diaries.find_by(date: date)
     end
 end
