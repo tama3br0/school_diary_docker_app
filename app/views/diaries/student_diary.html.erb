@@ -1,11 +1,14 @@
-<div class="diary-page">
-    <h1><%= @grade %>-<%= @class_num %>-<%= @student_num %>さんの にっき一覧</h1>
+<div class="student-diary-page">
+    <h1 class="page-title"><%= @student.name %> の日記一覧</h1>
     <div class="month-navigation">
         <%= link_to '前の月', student_diary_path(@student, date: @previous_month), class: 'button' if @previous_month %>
         <span class="date-field"><%= @date.strftime('%Y年%-m月') %></span>
         <%= link_to '次の月', student_diary_path(@student, date: @next_month), class: 'button' if @next_month %>
     </div>
-    <table>
+    <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'back-link button-link' %>
+    <%= link_to 'クラス選択', classes_path, class: 'back-link button-link' %>
+
+    <table class="diary-table">
         <thead>
             <tr>
                 <th>日付</th>
@@ -18,7 +21,7 @@
         <tbody>
             <% @diaries.each do |diary| %>
                 <tr>
-                    <td><%= diary.date.strftime('%-m月%-d日') %> (<%= diary.date.strftime('%A').gsub('Sunday', '日').gsub('Monday', '月').gsub('Tuesday', '火').gsub('Wednesday', '水').gsub('Thursday', '木').gsub('Friday', '金').gsub('Saturday', '土') %>)</td>
+                    <td><%= diary.date.strftime("%-m/%-d") %> (<%= japanese_wday(diary.date) %>)</td>
                     <% diary.answers.each_with_index do |answer, index| %>
                         <% if index < 4 %>
                             <% emotion_text = answer.choose_emotion.text %>
@@ -46,5 +49,4 @@
             <% end %>
         </tbody>
     </table>
-    <%= link_to '最初に戻る', authenticated_root_path, class: 'button' %>
 </div>

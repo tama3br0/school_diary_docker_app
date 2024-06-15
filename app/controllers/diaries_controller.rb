@@ -58,13 +58,14 @@ class DiariesController < ApplicationController
         @previous_month = @date - 1.month
         @next_month = @date + 1.month
 
-        @grade = @student.grade
-        @class_num = @student.class_num
-        @student_num = @student.student_number
+        @grade = @student.grade_class.grade
+        @class_num = @student.grade_class.class_num
+        @student_num = @student.student_num
 
         @diaries = @student.diaries.where("date >= ? AND date <= ?", @date.beginning_of_month, @date.end_of_month).order(:date)
         @questions = Question.all
     end
+
 
     def show
         @diary = current_user.diaries.find(params[:id])
