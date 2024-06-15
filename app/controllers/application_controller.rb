@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
     def after_sign_in_path_for(resource)
       if resource.additional_info_provided
-        flash[:notice] = 'ログイン しました！'
+        flash[:notice] = 'ログイン できました！'
         authenticated_root_path
       else
         additional_info_path
