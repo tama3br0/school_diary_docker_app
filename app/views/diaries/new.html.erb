@@ -2,7 +2,7 @@
 <div class="new-diary-page">
     <h1>にっきをかく</h1>
 
-    <%= form_with model: @diary, local: true, html: { class: 'new-diary-form' } do |f| %>
+    <%= form_with model: @diary, local: true, html: { class: 'new-diary-form', data: { turbo: false } } do |f| %>
       <div class="new-date-field">
         <%= f.hidden_field :date, value: Date.today %>
         <label>ひづけ</label>
