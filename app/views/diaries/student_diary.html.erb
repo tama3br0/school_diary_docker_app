@@ -1,0 +1,50 @@
+<div class="diary-page">
+    <h1><%= @grade %>-<%= @class_num %>-<%= @student_num %>さんの にっき一覧</h1>
+    <div class="month-navigation">
+        <%= link_to '前の月', student_diary_path(@student, date: @previous_month), class: 'button' if @previous_month %>
+        <span class="date-field"><%= @date.strftime('%Y年%-m月') %></span>
+        <%= link_to '次の月', student_diary_path(@student, date: @next_month), class: 'button' if @next_month %>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>学校</th>
+                <th>勉強</th>
+                <th>休み時間</th>
+                <th>給食</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @diaries.each do |diary| %>
+                <tr>
+                    <td><%= diary.date.strftime('%-m月%-d日') %> (<%= diary.date.strftime('%A').gsub('Sunday', '日').gsub('Monday', '月').gsub('Tuesday', '火').gsub('Wednesday', '水').gsub('Thursday', '木').gsub('Friday', '金').gsub('Saturday', '土') %>)</td>
+                    <% diary.answers.each_with_index do |answer, index| %>
+                        <% if index < 4 %>
+                            <% emotion_text = answer.choose_emotion.text %>
+                            <% emotion_class = case emotion_text
+                                              when "とても たのしかった" then "emotion-very-smile"
+                                              when "とても よくわかった" then "emotion-very-smile"
+                                              when "ぜんぶたべて、おかわりもした" then "emotion-very-smile"
+                                              when "たのしかった" then "emotion-smile"
+                                              when "よくわかった" then "emotion-smile"
+                                              when "のこさずに、ぜんぶたべた" then "emotion-smile"
+                                              when "すこし たのしかった" then "emotion-normal"
+                                              when "すこし わかった" then "emotion-normal"
+                                              when "へらしたけれど、ぜんぶたべた" then "emotion-normal"
+                                              when "たのしくなかった" then "emotion-shock"
+                                              when "わからなかった" then "emotion-shock"
+                                              when "すこし のこしてしまった" then "emotion-shock"
+                                              else "emotion-default"
+                                              end %>
+                            <td class="diary-column <%= emotion_class %>">
+                                <%= image_tag answer.choose_emotion.s3_image_url, size: "20x20", class: emotion_class %>
+                            </td>
+                        <% end %>
+                    <% end %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <%= link_to '最初に戻る', authenticated_root_path, class: 'button' %>
+</div>
