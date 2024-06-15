@@ -7,28 +7,18 @@ class DiariesController < ApplicationController
     end
 
     def create
-      # 同じ日の日記がある場合は削除
       current_user.diaries.where(date: diary_params[:date]).destroy_all
       @diary = current_user.diaries.build(diary_params)
-
-      # すべての質問に対して回答が提供されているかをチェック
-      Rails.logger.debug "params[:answers]の中身をチェック: #{params[:answers].inspect}"
       @questions = Question.all
 
-      if params[:answers].nil?
+      if params[:answers].nil? || @questions.any? { |q| params[:answers][q.id.to_s].blank? }
         flash.now[:alert] = 'こたえていない しつもんがあるよ'
         render :new, status: :unprocessable_entity
       else
-        missing_answers = @questions.any? { |q| params[:answers][q.id.to_s].blank? }
-
-        if missing_answers
-          flash.now[:alert] = 'こたえていない しつもんがあるよ'
-          render :new, status: :unprocessable_entity
-        elsif @diary.save
+        if @diary.save
           params[:answers].each do |question_id, choose_emotion_id|
             @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
           end
-
           Stamp.create(user: current_user, diary: @diary)
           redirect_to stamp_path(current_user.id), notice: 'にっきを ていしゅつしました！'
         else
