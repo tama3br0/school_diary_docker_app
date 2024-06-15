@@ -1,4 +1,4 @@
-# /diaries/new.html.erb
+<!-- /diaries/new.html.erb -->
 <div class="new-diary-page">
     <h1>にっきをかく</h1>
 
@@ -19,8 +19,8 @@
                 <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
                   <% if emotion.image_url.present? %>
                     <%= image_tag emotion.image_url, alt: emotion.text, class: "new-emotion-image" %>
-                  <% elsif emotion.image.attached? %>
-                    <%= image_tag url_for(emotion.image), alt: emotion.text, class: "new-emotion-image" %>
+                  <% else %>
+                    <%= image_tag emotion.s3_image_url, alt: emotion.text, class: "new-emotion-image" %>
                   <% end %>
                   <span class="new-emotion-text"><%= emotion.text %></span>
                 <% end %>

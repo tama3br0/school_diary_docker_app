@@ -17,7 +17,7 @@
               <% if answer.choose_emotion.image_url.present? %>
                 <%= image_tag answer.choose_emotion.image_url, alt: answer.choose_emotion.text, class: "emotion-image" %>
               <% else %>
-                <%= image_tag url_for(answer.choose_emotion.image), alt: answer.choose_emotion.text, class: "emotion-image" %>
+                <%= image_tag answer.choose_emotion.s3_image_url, alt: answer.choose_emotion.text, class: "emotion-image" %>
               <% end %>
               <span><%= answer.choose_emotion.text %></span>
             </div>
