@@ -14,9 +14,6 @@
   <% if user_signed_in? %>
     <%= render 'layouts/header' %>
   <% end %>
-  <div id="flash_messages">
-    <%= render 'layouts/flash' %>
-  </div>
   <%= yield %>
 </body>
 </html>
