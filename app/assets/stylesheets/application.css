@@ -11,7 +11,10 @@
  *= require diaries/new
  *= require diaries/choose_diary
  *= require diaries/show
+ *= require diaries/class_diary
+ *= require diaries/student_diary
  *= require stamps/show
  *= require classes/index
  *= require classes/show
+
  */
