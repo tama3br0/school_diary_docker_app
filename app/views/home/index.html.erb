@@ -1,4 +1,7 @@
 <main>
+    <div id="flash_messages">
+        <%= render 'layouts/flash' %>
+    </div>
     <h1>ようこそ！
         <% if @role == 'teacher' %>
             <%= @name %>せんせい
