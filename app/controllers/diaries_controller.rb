@@ -4,6 +4,7 @@ class DiariesController < ApplicationController
     def new
       @diary = Diary.new
       @questions = Question.all
+      @selected_answers = {}
     end
 
     def create
@@ -29,7 +30,22 @@ class DiariesController < ApplicationController
       end
     end
 
-    # 他のアクションは省略
+    def choose_diary
+      @date = params[:date]&.to_date || Date.today
+      start_of_week = @date.beginning_of_week(:monday)
+      end_of_week = @date.end_of_week(:sunday)
+
+      @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days + 1.day)
+      @current_week_range = start_of_week..(end_of_week + 1.day)
+      @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days + 1.day)
+
+      @diaries = current_user.diaries.where(date: @current_week_range).order(:date)
+    end
+
+    def show
+      @diary = current_user.diaries.find(params[:id])
+      @questions = @diary.answers.includes(:question, :choose_emotion).map(&:question).uniq
+    end
 
     private
 
