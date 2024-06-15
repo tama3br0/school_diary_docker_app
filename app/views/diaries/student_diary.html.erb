@@ -1,5 +1,7 @@
+<!-- diaries/student_diary.html.erb -->
+
 <div class="student-diary-page">
-    <h1 class="page-title"><%= @student.name %> の日記一覧</h1>
+    <h1 class="page-title"><%= display_user_info(@user) %>の日記一覧</h1>
     <div class="month-navigation">
         <%= link_to '前の月', student_diary_path(@student, date: @previous_month), class: 'button' if @previous_month %>
         <span class="date-field"><%= @date.strftime('%Y年%-m月') %></span>
