@@ -13,7 +13,8 @@ class DiariesController < ApplicationController
 
       # すべての質問に対して回答が提供されているかをチェック
       Rails.logger.debug "params[:answers]の中身をチェック: #{params[:answers].inspect}"
-      missing_answers = params[:answers].nil? || params[:answers].values.any?(&:blank?)
+      @questions = Question.all
+      missing_answers = @questions.any? { |q| params[:answers][q.id.to_s].blank? }
 
       if missing_answers
         flash.now[:alert] = 'こたえていない しつもんがあるよ'
