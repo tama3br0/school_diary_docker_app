@@ -28,7 +28,7 @@
   .class-selection-page .class-link {
     margin: 10px;
     padding: 10px 20px;
-    background-color: #4CAF50; /* 背景色を緑に */
+    background-color: #007bff; /* 背景色 */
     color: #fff; /* テキストカラーを白に */
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -38,7 +38,7 @@
   }
 
   .class-selection-page .class-link:hover {
-    background-color: #45a049; /* ホバー時の背景色を少し暗くする */
+    background-color: #0056b3; /* ホバー時の背景色を少し暗くする */
   }
 
   .button-link {
@@ -46,7 +46,7 @@
     padding: 10px 20px;
     font-size: 1em;
     color: #fff; /* テキストカラーを白に */
-    background-color: #4CAF50;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     text-align: center;
@@ -56,5 +56,5 @@
   }
 
   .button-link:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
   }

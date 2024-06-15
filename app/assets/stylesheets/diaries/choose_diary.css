@@ -10,8 +10,8 @@
 }
 
 .diary-selection-page .button {
-    background-color: #b0c4de; /* ボタンの背景色をライトスチールブルーに設定 */
-    color: black;
+    background-color: #007bff; /* ボタンの背景色 */
+    color: white;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 10px;
@@ -29,8 +29,8 @@
 }
 
 .diary-selection-page .week-navigation .button {
-    background-color: #d3d3d3; /* ボタンの背景色をライトグレーに設定 */
-    color: black;
+    background-color: #007bff; /* ボタンの背景色 */
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -41,15 +41,15 @@
 }
 
 .diary-selection-page .week-navigation .previous-week-button {
-    background-color: #bcd4e6; /* 前の週のボタン色をライトブルーに設定 */
+    background-color: #007bff; /* 前の週のボタン */
 }
 
 .diary-selection-page .week-navigation .next-week-button {
-    background-color: #fdfd96; /* 次の週のボタン色をライトイエローに設定 */
+    background-color: #007bff; /* 次の週のボタン */
 }
 
 .diary-selection-page .week-navigation .button:hover {
-    background-color: #a9a9a9; /* ホバー時の色をダークグレーに設定 */
+    background-color: #0056b3; /* ホバー時 */
 }
 
 .diary-selection-page .week-navigation span {
