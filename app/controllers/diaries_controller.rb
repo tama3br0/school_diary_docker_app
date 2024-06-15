@@ -64,6 +64,7 @@ class DiariesController < ApplicationController
 
         @diaries = @student.diaries.where("date >= ? AND date <= ?", @date.beginning_of_month, @date.end_of_month).order(:date)
         @questions = Question.all
+        @user = @student  # 追加: @user に選択されたユーザー情報をセット
     end
 
 
