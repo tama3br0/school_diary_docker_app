@@ -44,14 +44,7 @@ class DiariesController < ApplicationController
       @current_week_range = start_of_week..(end_of_week + 1.day)
       @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days + 1.day)
 
-    #   Rails.logger.debug "start_of_week: #{start_of_week}, end_of_week: #{end_of_week}"
-    #   Rails.logger.debug "@current_week_range: #{@current_week_range}"
-    #   Rails.logger.debug "Previous week range: #{@previous_week_range}"
-    #   Rails.logger.debug "Next week range: #{@next_week_range}"
-
       @diaries = current_user.diaries.where(date: @current_week_range).order(:date)
-
-    #   Rails.logger.debug "取得した日記: #{@diaries.map(&:date)}"
     end
 
     def show
@@ -62,6 +55,6 @@ class DiariesController < ApplicationController
     private
 
     def diary_params
-      params.require(:diary).permit(:date, :image_url)
+      params.require(:diary).permit(:date, :image_url, answers: {})
     end
 end
