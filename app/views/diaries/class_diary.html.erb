@@ -25,9 +25,9 @@
           <tr>
             <td class="student-number">
               <% if student.role == 'student' %>
-                <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
+                <%= link_to "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}", student_diary_path(student) %>
               <% else %>
-                <%= "#{student.grade_class.grade}#{student.grade_class.class_num}せんせい" %>
+                <%= link_to "#{student.grade_class.grade}#{student.grade_class.class_num}せんせい", student_diary_path(student) %>
               <% end %>
             </td>
             <td><%= @date.strftime("%-m/%-d") %> (<%= japanese_wday(@date) %>)</td>
