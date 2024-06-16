@@ -1,8 +1,12 @@
+<!-- /diaries/new_diary_for_student.html.erb -->
+
 <% if @student.role == 'student' %>
   <h1><%= "#{@student.grade_class.grade}#{@student.grade_class.class_num}#{sprintf('%02d', @student.student_num)}" %>さんのにっきを作成</h1>
 <% else %>
   <h1><%= @student.name %>せんせいのにっきを作成</h1>
 <% end %>
+
+<%= link_to '戻る', student_diary_path(@student, date: Date.today) %>
 
 <div class="new-diary-page">
   <div id="flash_messages">
@@ -14,7 +18,7 @@
 
     <div class="new-date-field">
       <%= form.label :date, "日付" %>
-      <%= form.date_field :date, value: @diary.date %>
+      <%= form.date_field :date, value: Date.today %>
     </div>
 
     <% @questions.each do |question| %>
@@ -23,10 +27,14 @@
         <div class="new-emotions-container">
           <% question.choose_emotions.each do |emotion| %>
             <div class="new-emotion-item">
-              <%= form.radio_button :answers, emotion.id, id: "emotion_#{emotion.id}" %>
-              <%= form.label :answers, for: "emotion_#{emotion.id}" do %>
-                <%= image_tag emotion.image %>
-                <span><%= emotion.text %></span>
+              <%= radio_button_tag "answers[#{question.id}]", emotion.id, @selected_answers[question.id.to_s] == emotion.id.to_s, class: "new-emotion-radio" %>
+              <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
+                <% if emotion.image_url.present? %>
+                  <%= image_tag emotion.image_url, alt: emotion.text, class: "new-emotion-image" %>
+                <% else %>
+                  <%= image_tag emotion.s3_image_url, alt: emotion.text, class: "new-emotion-image" %>
+                <% end %>
+                <span class="new-emotion-text"><%= emotion.text %></span>
               <% end %>
             </div>
           <% end %>
@@ -38,6 +46,4 @@
       <%= form.submit "にっきを ていしゅつ", class: 'new-submit-button' %>
     </div>
   <% end %>
-
-  <%= link_to '戻る', student_diary_path(@student, date: @diary.date) %>
 </div>
