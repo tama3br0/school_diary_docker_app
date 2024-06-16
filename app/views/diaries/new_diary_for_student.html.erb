@@ -1,4 +1,5 @@
 <!-- /diaries/new_diary_for_student.html.erb -->
+
 <% if @student.role == 'student' %>
   <h1><%= "#{@student.grade_class.grade}#{@student.grade_class.class_num}#{sprintf('%02d', @student.student_num)}" %>さんのにっきを作成</h1>
 <% else %>
@@ -13,39 +14,33 @@
   </div>
 
   <%= form_with model: @diary, url: create_diary_for_student_path, local: true, class: 'new-diary-form' do |form| %>
-  <%= form.hidden_field :user_id, value: @student.id %>
+    <%= form.hidden_field :user_id, value: @student.id %>
 
-  <div class="new-date-field">
-    <%= form.label :date, "日付" %>
-    <%= form.date_field :date, value: Date.today %>
-  </div>
-
-  <% @questions.each do |question| %>
-    <div class="new-question-container">
-      <h3><%= question.text %></h3>
-      <div class="new-emotions-container">
-        <% question.choose_emotions.each do |emotion| %>
-          <div class="new-emotion-item">
-            <%= radio_button_tag "answers[#{question.id}]", emotion.id, @selected_answers[question.id.to_s] == emotion.id.to_s, class: "new-emotion-radio" %>
-            <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
-              <% if emotion.image_url.present? %>
-                <%= image_tag emotion.image_url, alt: emotion.text, class: "new-emotion-image" %>
-              <% else %>
-                <%= image_tag emotion.s3_image_url, alt: emotion.text, class: "new-emotion-image" %>
-              <% end %>
-              <span class="new-emotion-text"><%= emotion.text %></span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+    <div class="new-date-field">
+      <%= form.label :date, "日付" %>
+      <%= form.date_field :date, value: Date.today %>
     </div>
-  <% end %>
 
-  <div class="new-submit-container">
-    <%= form.submit "にっきを ていしゅつ", class: 'new-submit-button' %>
-  </div>
-<% end %>
-
+    <% @questions.each do |question| %>
+      <div class="new-question-container">
+        <h3><%= question.text %></h3>
+        <div class="new-emotions-container">
+          <% question.choose_emotions.each do |emotion| %>
+            <div class="new-emotion-item">
+              <%= radio_button_tag "answers[#{question.id}]", emotion.id, @selected_answers[question.id.to_s] == emotion.id.to_s, class: "new-emotion-radio" %>
+              <%= label_tag "answers_#{question.id}_#{emotion.id}" do %>
+                <% if emotion.image_url.present? %>
+                  <%= image_tag emotion.image_url, alt: emotion.text, class: "new-emotion-image" %>
+                <% else %>
+                  <%= image_tag emotion.s3_image_url, alt: emotion.text, class: "new-emotion-image" %>
+                <% end %>
+                <span class="new-emotion-text"><%= emotion.text %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="new-submit-container">
       <%= form.submit "にっきを ていしゅつ", class: 'new-submit-button' %>
