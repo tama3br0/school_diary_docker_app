@@ -54,7 +54,7 @@ class DiariesController < ApplicationController
       end
     end
 
-    def new_for_student
+    def new_diary_for_student
       @student = User.find(params[:id])
       @diary = Diary.new
       @questions = Question.all

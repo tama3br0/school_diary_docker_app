@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     get   'users/additional_info',        to: 'users#additional_info',            as: 'additional_info'
     patch 'users/save_additional_info',   to: 'users#save_additional_info',       as: 'save_additional_info'
 
-    get  'classes',                      to: 'classes#index',                    as: 'classes'
-    get  'classes/:id/class_diary',      to: 'diaries#class_diary',              as: 'class_diary'
-    get  'students/:id/student_diary',   to: 'diaries#student_diary',            as: 'student_diary'
-    get  'students/:id/new_diary',       to: 'diaries#new_for_student',          as: 'new_for_student'
-    post 'create_diary_for_student',     to: 'diaries#create_diary_for_student', as: 'create_diary_for_student'
+    get  'classes',                             to: 'classes#index',                    as: 'classes'
+    get  'classes/:id/class_diary',             to: 'diaries#class_diary',              as: 'class_diary'
+    get  'students/:id/student_diary',          to: 'diaries#student_diary',            as: 'student_diary'
+    get  'students/:id/new_diary_for_student',  to: 'diaries#new_diary_for_student',    as: 'new_diary_for_student'
+    post 'create_diary_for_student',            to: 'diaries#create_diary_for_student', as: 'create_diary_for_student'
   end
