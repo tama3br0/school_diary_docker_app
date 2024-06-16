@@ -1,12 +1,14 @@
 class DiariesController < ApplicationController
     before_action :authenticate_user!
 
+    # 新しい日記作成
     def new
       @diary = Diary.new
       @questions = Question.all
       @selected_answers = {}
     end
 
+    # 日記の作成
     def create
       current_user.diaries.where(date: diary_params[:date]).destroy_all
       @diary = current_user.diaries.build(diary_params)
@@ -30,6 +32,7 @@ class DiariesController < ApplicationController
       end
     end
 
+    # 生徒の日記作成画面表示
     def new_diary_for_student
       @student = User.find(params[:id])
       @diary = Diary.new
@@ -37,6 +40,7 @@ class DiariesController < ApplicationController
       @selected_answers = {}
     end
 
+    # 生徒の日記作成
     def create_diary_for_student
       @student = User.find(params[:diary][:user_id])
       Rails.logger.info "フォームから送信されたユーザーID: #{params[:diary][:user_id]}"
