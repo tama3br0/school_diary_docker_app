@@ -36,9 +36,9 @@ class UsersController < ApplicationController
 
     def unique_combination?(grade_class, student_num)
       if @user.student? && User.exists?(grade_class: grade_class, student_num: student_num)
-        @user.errors.add(:student_num, "すでに他の人が登録されています")
+        @user.errors.add(:student_num, "すでに、ほかのひとが とうろく されています")
         return false
       end
       true
     end
-  end
+end
