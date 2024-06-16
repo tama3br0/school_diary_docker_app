@@ -31,36 +31,36 @@ class DiariesController < ApplicationController
     end
 
     def new_diary_for_student
-        @student = User.find(params[:id])
-        @diary = Diary.new
-        @questions = Question.all
-        @selected_answers = {}
+      @student = User.find(params[:id])
+      @diary = Diary.new
+      @questions = Question.all
+      @selected_answers = {}
     end
 
     def create_diary_for_student
-        @student = User.find(diary_params[:user_id])
-        @diary = @student.diaries.where(date: diary_params[:date]).destroy_all
-        @diary = @student.diaries.build(diary_params.except(:user_id))
-        @questions = Question.all
-        @selected_answers = params[:answers] || {}
+      @student = User.find(params[:diary][:user_id])
+      @student.diaries.where(date: diary_params[:date]).destroy_all
+      @diary = @student.diaries.build(diary_params.except(:user_id))
+      @questions = Question.all
+      @selected_answers = params[:answers] || {}
 
-        Rails.logger.info "Creating diary for student ID: #{@student.id}, Diary belongs to user ID: #{@diary.user_id}"
+      Rails.logger.info "Creating diary for student ID: #{@student.id}, Diary belongs to user ID: #{@diary.user_id}"
 
-        if @selected_answers.empty? || @questions.any? { |q| @selected_answers[q.id.to_s].blank? }
-          flash.now[:alert] = 'こたえていない しつもんがあるよ'
-          render :new_diary_for_student, status: :unprocessable_entity
-        else
-          if @diary.save
-            @selected_answers.each do |question_id, choose_emotion_id|
-              @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
-            end
-            Stamp.create(user: @student, diary: @diary)
-            redirect_to student_diary_path(@student, date: @diary.date), notice: 'にっきを ていしゅつしました！'
-          else
-            flash.now[:alert] = @diary.errors.full_messages.join(', ')
-            render :new_diary_for_student, status: :unprocessable_entity
+      if @selected_answers.empty? || @questions.any? { |q| @selected_answers[q.id.to_s].blank? }
+        flash.now[:alert] = 'こたえていない しつもんがあるよ'
+        render :new_diary_for_student, status: :unprocessable_entity
+      else
+        if @diary.save
+          @selected_answers.each do |question_id, choose_emotion_id|
+            @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
           end
+          Stamp.create(user: @student, diary: @diary)
+          redirect_to student_diary_path(@student, date: @diary.date), notice: 'にっきを ていしゅつしました！'
+        else
+          flash.now[:alert] = @diary.errors.full_messages.join(', ')
+          render :new_diary_for_student, status: :unprocessable_entity
         end
+      end
     end
 
     def choose_diary
