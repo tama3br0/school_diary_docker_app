@@ -38,39 +38,38 @@ class DiariesController < ApplicationController
     end
 
     def create_diary_for_student
-        @student = User.find(params[:diary][:user_id])
-        Rails.logger.info "フォームから送信されたユーザーID: #{params[:diary][:user_id]}"
-        Rails.logger.info "見つけた学生のID: #{@student.id}"
+      @student = User.find(params[:diary][:user_id])
+      Rails.logger.info "フォームから送信されたユーザーID: #{params[:diary][:user_id]}"
+      Rails.logger.info "見つけた学生のID: #{@student.id}"
 
-        @student.diaries.where(date: diary_params[:date]).destroy_all
-        @diary = @student.diaries.build(diary_params.except(:user_id))
-        Rails.logger.info "日記が作成されるユーザーID: #{@diary.user_id}"
+      @student.diaries.where(date: diary_params[:date]).destroy_all
+      @diary = @student.diaries.build(diary_params.except(:user_id))
+      Rails.logger.info "日記が作成されるユーザーID: #{@diary.user_id}"
 
-        @questions = Question.all
-        @selected_answers = params[:answers] || {}
-        Rails.logger.info "選択された回答: #{@selected_answers}"
+      @questions = Question.all
+      @selected_answers = params[:answers] || {}
+      Rails.logger.info "選択された回答: #{@selected_answers}"
 
-        if @selected_answers.empty? || @questions.any? { |q| @selected_answers[q.id.to_s].blank? }
-          flash.now[:alert] = 'こたえていない しつもんがあるよ'
-          render :new_diary_for_student, status: :unprocessable_entity
-        else
-          if @diary.save
-            Rails.logger.info "日記が保存されました。日記ID: #{@diary.id}"
+      if @selected_answers.empty? || @questions.any? { |q| @selected_answers[q.id.to_s].blank? }
+        flash.now[:alert] = 'こたえていない しつもんがあるよ'
+        render :new_diary_for_student, status: :unprocessable_entity
+      else
+        if @diary.save
+          Rails.logger.info "日記が保存されました。日記ID: #{@diary.id}"
 
-            @selected_answers.each do |question_id, choose_emotion_id|
-              @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
-              Rails.logger.info "回答が作成されました。質問ID: #{question_id}, 感情ID: #{choose_emotion_id}"
-            end
-            Stamp.create(user: @student, diary: @diary)
-            redirect_to student_diary_path(@student, date: @diary.date), notice: 'にっきを ていしゅつしました！'
-          else
-            Rails.logger.info "日記の保存に失敗しました: #{@diary.errors.full_messages.join(', ')}"
-            flash.now[:alert] = @diary.errors.full_messages.join(', ')
-            render :new_diary_for_student, status: :unprocessable_entity
+          @selected_answers.each do |question_id, choose_emotion_id|
+            @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
+            Rails.logger.info "回答が作成されました。質問ID: #{question_id}, 感情ID: #{choose_emotion_id}"
           end
+          Stamp.create(user: @student, diary: @diary)
+          redirect_to student_diary_path(@student, date: @diary.date), notice: 'にっきを ていしゅつしました！'
+        else
+          Rails.logger.info "日記の保存に失敗しました: #{@diary.errors.full_messages.join(', ')}"
+          flash.now[:alert] = @diary.errors.full_messages.join(', ')
+          render :new_diary_for_student, status: :unprocessable_entity
         end
       end
-
+    end
 
     def choose_diary
       @date = params[:date]&.to_date || Date.today
