@@ -5,6 +5,7 @@ class DiariesController < ApplicationController
     def new
       @diary = Diary.new(date: params[:date], user_id: params[:user_id])
       @questions = Question.all
+      @selected_answers = {}
     end
 
     def create
@@ -29,17 +30,51 @@ class DiariesController < ApplicationController
       end
     end
 
-    def edit
-      @diary = Diary.find(params[:id])
+    def choose_diary
+      @date = params[:date]&.to_date || Date.today
+      start_of_week = @date.beginning_of_week(:monday)
+      end_of_week = @date.end_of_week(:sunday)
+
+      @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days + 1.day)
+      @current_week_range = start_of_week..(end_of_week + 1.day)
+      @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days + 1.day)
+
+      @diaries = current_user.diaries.where(date: @current_week_range).order(:date)
     end
 
-    def update
-      @diary = Diary.find(params[:id])
-      if @diary.update(diary_params)
-        redirect_to @diary, notice: 'Diary was successfully updated.'
-      else
-        render :edit
+    def class_diary
+      @grade_class = GradeClass.find_by(id: params[:id])
+      if @grade_class.nil?
+        redirect_to classes_path, alert: 'クラスが見つかりませんでした。'
+        return
       end
+
+      @date = params[:date]&.to_date || Date.today
+      @previous_date = @date - 1.day
+      @next_date = @date + 1.day
+
+      @students = User.where(grade_class: @grade_class).order(:student_num)
+      @questions = Question.all
+    end
+
+    def student_diary
+      @student = User.find(params[:id])
+      @date = params[:date]&.to_date || Date.today
+      @previous_month = @date - 1.month
+      @next_month = @date + 1.month
+
+      @grade = @student.grade_class.grade
+      @class_num = @student.grade_class.class_num
+      @student_num = @student.student_num
+
+      @diaries = @student.diaries.where("date >= ? AND date <= ?", @date.beginning_of_month, @date.end_of_month).order(:date)
+      @questions = Question.all
+      @user = @student  # 追加: @user に選択されたユーザー情報をセット
+    end
+
+    def show
+      @diary = current_user.diaries.find(params[:id])
+      @questions = @diary.answers.includes(:question, :choose_emotion).map(&:question).uniq
     end
 
     private
