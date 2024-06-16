@@ -1,15 +1,15 @@
 class DiariesController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorize_teacher, only: [:edit, :update, :new, :create]
 
     def new
-      @diary = Diary.new(date: params[:date], user_id: params[:user_id])
+      @diary = Diary.new
       @questions = Question.all
       @selected_answers = {}
     end
 
     def create
-      @diary = Diary.new(diary_params.merge(user_id: params[:diary][:user_id]))
+      current_user.diaries.where(date: diary_params[:date]).destroy_all
+      @diary = current_user.diaries.build(diary_params)
       @questions = Question.all
       @selected_answers = params[:answers] || {}
 
@@ -21,13 +21,44 @@ class DiariesController < ApplicationController
           @selected_answers.each do |question_id, choose_emotion_id|
             @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
           end
-          Stamp.create(user: @diary.user, diary: @diary)
-          redirect_to stamp_path(@diary.user.id), notice: 'にっきを ていしゅつしました！'
+          Stamp.create(user: current_user, diary: @diary)
+          redirect_to stamp_path(current_user.id), notice: 'にっきを ていしゅつしました！'
         else
           flash.now[:alert] = @diary.errors.full_messages.join(', ')
           render :new, status: :unprocessable_entity
         end
       end
+    end
+
+    def create_diary_for_student
+      @student = User.find(params[:diary][:user_id])
+      @diary = @student.diaries.where(date: diary_params[:date]).destroy_all
+      @diary = @student.diaries.build(diary_params)
+      @questions = Question.all
+      @selected_answers = params[:answers] || {}
+
+      if @selected_answers.empty? || @questions.any? { |q| @selected_answers[q.id.to_s].blank? }
+        flash.now[:alert] = 'こたえていない しつもんがあるよ'
+        render :new_for_student, status: :unprocessable_entity
+      else
+        if @diary.save
+          @selected_answers.each do |question_id, choose_emotion_id|
+            @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
+          end
+          Stamp.create(user: @student, diary: @diary)
+          redirect_to student_diary_path(@student, date: @diary.date), notice: 'にっきを ていしゅつしました！'
+        else
+          flash.now[:alert] = @diary.errors.full_messages.join(', ')
+          render :new_for_student, status: :unprocessable_entity
+        end
+      end
+    end
+
+    def new_for_student
+      @student = User.find(params[:id])
+      @diary = Diary.new
+      @questions = Question.all
+      @selected_answers = {}
     end
 
     def choose_diary
@@ -43,12 +74,7 @@ class DiariesController < ApplicationController
     end
 
     def class_diary
-      @grade_class = GradeClass.find_by(id: params[:id])
-      if @grade_class.nil?
-        redirect_to classes_path, alert: 'クラスが見つかりませんでした。'
-        return
-      end
-
+      @grade_class = GradeClass.find(params[:id])
       @date = params[:date]&.to_date || Date.today
       @previous_date = @date - 1.day
       @next_date = @date + 1.day
@@ -79,11 +105,7 @@ class DiariesController < ApplicationController
 
     private
 
-    def authorize_teacher
-      redirect_to(root_path, alert: 'You are not authorized to perform this action.') unless current_user.teacher?
-    end
-
     def diary_params
-      params.require(:diary).permit(:date, :user_id, :image_url, answers: {})
+      params.require(:diary).permit(:date, :image_url, :user_id, answers: {})
     end
 end

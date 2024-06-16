@@ -1,4 +1,4 @@
-<!-- student_diary.html.erb -->
+<!-- diaries/student_diary.html.erb -->
 
 <div class="student-diary-page">
     <h1 class="page-title"><%= display_user_info(@user) %>の日記一覧</h1>
@@ -18,7 +18,6 @@
                 <th>勉強</th>
                 <th>休み時間</th>
                 <th>給食</th>
-                <th>アクション</th> <!-- アクション列を追加 -->
             </tr>
         </thead>
         <tbody>
@@ -48,13 +47,12 @@
                             </td>
                         <% end %>
                     <% end %>
-                    <td>
-                      <% if current_user.teacher? %>
-                        <%= link_to '編集', diary.present? ? edit_diary_path(diary) : new_diary_path(date: diary.date, user_id: @student.id), class: 'edit-link button-link' %>
-                      <% end %>
-                    </td>
                 </tr>
             <% end %>
         </tbody>
     </table>
+
+    <% if current_user.teacher? %>
+        <%= link_to '日記を代わりに作成', new_diary_for_student_path(date: @date, user_id: @student.id), class: 'create-link button-link' %>
+    <% end %>
 </div>

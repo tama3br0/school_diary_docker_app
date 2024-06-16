@@ -1,0 +1,30 @@
+<!-- app/views/diaries/new_for_student.html.erb -->
+<% if @student.role == 'student' %>
+  <h1><%= "#{@student.grade_class.grade}#{@student.grade_class.class_num}#{sprintf('%02d', @student.student_num)}" %>さんのにっきを作成</h1>
+<% else %>
+  <h1><%= @student.name %>せんせいのにっきを作成</h1>
+<% end %>
+
+<%= form_with model: @diary, url: create_diary_for_student_path, local: true do |form| %>
+  <%= form.hidden_field :user_id, value: @student.id %>
+  <%= form.label :date, "日付" %>
+  <%= form.date_field :date, value: @diary.date %>
+
+  <% @questions.each do |question| %>
+    <div class="question">
+      <p><%= question.content %></p>
+      <%= form.collection_radio_buttons :answers, question.id, question.choose_emotions, :id, :emotion, include_hidden: false do |b| %>
+        <div class="emotion-option">
+          <%= b.radio_button %>
+          <%= b.label do %>
+            <%= image_tag b.object.image %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form.submit "にっきを ていしゅつ" %>
+<% end %>
+
+<%= link_to '戻る', student_diary_path(@student, date: @diary.date) %>
