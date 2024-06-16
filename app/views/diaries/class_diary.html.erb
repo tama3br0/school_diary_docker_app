@@ -59,11 +59,6 @@
             <% else %>
               <td colspan="4">まだ ていしゅつしていません</td>
             <% end %>
-            <td>
-              <% if current_user.teacher? %>
-                <%= link_to '日記を代わりに作成', new_diary_for_student_path(date: @date, user_id: student.id), class: 'create-link button-link' %>
-              <% end %>
-            </td>
           </tr>
         <% end %>
       </tbody>
