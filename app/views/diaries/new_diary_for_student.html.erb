@@ -15,7 +15,7 @@
       <% question.choose_emotions.each do |emotion| %>
         <div class="emotion-option">
           <%= form.radio_button :answers, emotion.id %>
-          <%= form.label :answers, emotion.emotion do %>
+          <%= form.label :answers, emotion.text do %>
             <%= image_tag emotion.image %>
           <% end %>
         </div>
