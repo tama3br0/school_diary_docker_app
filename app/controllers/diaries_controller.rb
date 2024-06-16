@@ -33,7 +33,7 @@ class DiariesController < ApplicationController
     def choose_diary
       @date = params[:date]&.to_date || Date.today
       start_of_week = @date.beginning_of_week(:monday)
-      end_of_week = @date.end_of_week(:sunday)
+      end_of_week = start_of_week + 6.days  # 修正：2週間から1週間に変更
 
       Rails.logger.debug "Start of week: #{start_of_week}"
       Rails.logger.debug "End of week: #{end_of_week}"
@@ -86,4 +86,4 @@ class DiariesController < ApplicationController
     def diary_params
       params.require(:diary).permit(:date, :image_url, answers: {})
     end
-  end
+end
