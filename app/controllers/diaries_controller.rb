@@ -44,6 +44,8 @@ class DiariesController < ApplicationController
 
       @student.diaries.where(date: diary_params[:date]).destroy_all
       @diary = @student.diaries.build(diary_params.except(:user_id))
+      @diary.user_id = @student.id # 学生のuser_idを再設定
+
       Rails.logger.info "日記が作成されるユーザーID: #{@diary.user_id}"
 
       @questions = Question.all

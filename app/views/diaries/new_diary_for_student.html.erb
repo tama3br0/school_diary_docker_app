@@ -1,3 +1,4 @@
+<!-- diaries/new_diary_for_student.html.erb -->
 <% if @student.role == 'student' %>
   <h1><%= "#{@student.grade_class.grade}#{@student.grade_class.class_num}#{sprintf('%02d', @student.student_num)}" %>さんのにっきを作成</h1>
 <% else %>
@@ -12,7 +13,7 @@
   </div>
 
   <%= form_with model: @diary, url: create_diary_for_student_path, local: true, class: 'new-diary-form' do |form| %>
-    <%= form.hidden_field :user_id, value: @student.id %>
+    <%= form.hidden_field :user_id, value: @student.id %> <!-- 学生のuser_idを隠しフィールドで設定 -->
 
     <div class="new-date-field">
       <%= form.label :date, "日付" %>
