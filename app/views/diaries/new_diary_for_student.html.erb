@@ -1,15 +1,13 @@
 <!-- /diaries/new_diary_for_student.html.erb -->
+<% if @student.role == 'student' %>
+  <h1><%= "#{@student.grade_class.grade}#{@student.grade_class.class_num}#{sprintf('%02d', @student.student_num)}" %>さんのにっきを作成</h1>
+<% else %>
+  <h1><%= @student.name %>せんせいのにっきを作成</h1>
+<% end %>
+
+<%= link_to '戻る', student_diary_path(@student, date: Date.today) %>
 
 <div class="new-diary-page">
-    <% if @student.role == 'student' %>
-      <h1><%= "#{@student.grade_class.grade}#{@student.grade_class.class_num}#{sprintf('%02d', @student.student_num)}" %>さんのにっきを作成</h1>
-    <% else %>
-      <h1><%= @student.name %>せんせいのにっきを作成</h1>
-    <% end %>
-
-    <%= link_to '戻る', student_diary_path(@student, date: Date.today) %>
-    <%= debug @student %>  <!-- 追加 -->
-
   <div id="flash_messages">
     <%= render 'layouts/flash' %>
   </div>
