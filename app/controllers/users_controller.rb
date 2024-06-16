@@ -19,9 +19,11 @@ class UsersController < ApplicationController
       @user.assign_attributes(user_params.except(:grade, :class_num, :school_code))
       @user.additional_info_provided = true
 
-      if @user.save
+      if @user.valid? && unique_combination?
+        @user.save
         redirect_to authenticated_root_path, notice: 'とうろく できました！'
       else
+        flash[:alert] = @user.errors.full_messages.join("\n")
         render :additional_info
       end
     end
@@ -30,5 +32,13 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:role, :name, :student_num, :grade, :class_num, :school_code)
+    end
+
+    def unique_combination?
+      if @user.student? && User.exists?(grade_class: @user.grade_class, student_num: @user.student_num)
+        @user.errors.add(:student_num, "すでに他の人が登録されています")
+        return false
+      end
+      true
     end
 end

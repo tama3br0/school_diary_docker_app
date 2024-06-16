@@ -1,5 +1,9 @@
 <h1>データを とうろく しよう！</h1>
 
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
 <%= form_with model: @user, url: save_additional_info_path, local: true, html: { class: 'additional-info-form' } do |f| %>
     <div class="field">
         <%= f.label :school_code, "がっこうコード ※ せんせいに、きいてね！" %>
@@ -14,7 +18,6 @@
         </div>
         <%= f.hidden_field :role %>
     </div>
-
 
     <div class="field" id="teacher-name" style="display: none;">
         <%= f.label :name, "名前 (先生の場合のみ)" %>
@@ -59,15 +62,18 @@
         const roleInput = document.querySelector("#user_role");
         const gradeInput = document.querySelector("#user_grade");
         const classNumInput = document.querySelector("#user_class_num");
+        const schoolCodeInput = document.querySelector("#user_school_code");
+        const nameInput = document.querySelector("#user_name");
+        const studentNumInput = document.querySelector("#user_student_num");
         const teacherNameField = document.getElementById("teacher-name");
         const studentNumField = document.getElementById("student-num");
 
         function toggleFields() {
             const role = roleInput.value;
-            if (role === "teacher") { // 修正点: "1"から"teacher"に変更
+            if (role === "teacher") {
                 teacherNameField.style.display = "block";
                 studentNumField.style.display = "none";
-            } else if (role === "student") { // 修正点: "0"から"student"に変更
+            } else if (role === "student") {
                 teacherNameField.style.display = "none";
                 studentNumField.style.display = "block";
             } else {
@@ -102,5 +108,42 @@
         });
 
         toggleFields(); // 初期表示のために呼び出す
+
+        document.querySelector(".additional-info-form").addEventListener("submit", function(event) {
+            let valid = true;
+            let errorMessage = "";
+
+            if (!schoolCodeInput.value.trim()) {
+                valid = false;
+                errorMessage += "がっこうコードを入力してください。\n";
+            }
+            if (!roleInput.value.trim()) {
+                valid = false;
+                errorMessage += "役割を選択してください。\n";
+            }
+            if (roleInput.value === "teacher" && !nameInput.value.trim()) {
+                valid = false;
+                errorMessage += "先生の場合、名前を入力してください。\n";
+            }
+            if (roleInput.value === "student") {
+                if (!gradeInput.value.trim()) {
+                    valid = false;
+                    errorMessage += "なんねんせいかを選択してください。\n";
+                }
+                if (!classNumInput.value.trim()) {
+                    valid = false;
+                    errorMessage += "なんくみかを選択してください。\n";
+                }
+                if (!studentNumInput.value.trim()) {
+                    valid = false;
+                    errorMessage += "しゅっせきばんごうを選択してください。\n";
+                }
+            }
+
+            if (!valid) {
+                event.preventDefault();
+                alert(errorMessage);
+            }
+        });
     });
 </script>
