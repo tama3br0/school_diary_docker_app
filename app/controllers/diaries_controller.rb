@@ -39,10 +39,12 @@ class DiariesController < ApplicationController
 
     def create_diary_for_student
         @student = User.find(diary_params[:user_id])
-        @student.diaries.where(date: diary_params[:date]).destroy_all
+        @diary = @student.diaries.where(date: diary_params[:date]).destroy_all
         @diary = @student.diaries.build(diary_params.except(:user_id))
         @questions = Question.all
         @selected_answers = params[:answers] || {}
+
+        Rails.logger.info "Creating diary for student ID: #{@student.id}, Diary belongs to user ID: #{@diary.user_id}"
 
         if @selected_answers.empty? || @questions.any? { |q| @selected_answers[q.id.to_s].blank? }
           flash.now[:alert] = 'こたえていない しつもんがあるよ'
