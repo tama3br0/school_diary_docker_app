@@ -35,9 +35,9 @@ class DiariesController < ApplicationController
         start_of_week = @date.beginning_of_week(:monday)
         end_of_week = @date.end_of_week(:sunday)
 
-        @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days + 1.day)
-        @current_week_range = start_of_week..(end_of_week + 1.day)
-        @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days + 1.day)
+        @previous_week_range = (start_of_week - 7.days)..(end_of_week - 7.days)
+        @current_week_range = start_of_week..end_of_week
+        @next_week_range = (start_of_week + 7.days)..(end_of_week + 7.days)
 
         @diaries = current_user.diaries.where(date: @current_week_range).order(:date)
     end
