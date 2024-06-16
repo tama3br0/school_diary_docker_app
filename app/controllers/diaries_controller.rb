@@ -32,8 +32,7 @@ class DiariesController < ApplicationController
 
     def create_diary_for_student
       @student = User.find(diary_params[:user_id])
-      @student.diaries.where(date: diary_params[:date]).destroy_all
-      @diary = @student.diaries.build(diary_params)
+      @diary = @student.diaries.build(diary_params.except(:user_id))  # user_idを除外してdiary_paramsを使用
       @questions = Question.all
       @selected_answers = params[:answers] || {}
 
@@ -41,6 +40,7 @@ class DiariesController < ApplicationController
         flash.now[:alert] = 'こたえていない しつもんがあるよ'
         render :new_diary_for_student, status: :unprocessable_entity
       else
+        @student.diaries.where(date: diary_params[:date]).destroy_all  # 新しい日記の生成後に既存の日記を削除
         if @diary.save
           @selected_answers.each do |question_id, choose_emotion_id|
             @diary.answers.create(question_id: question_id, choose_emotion_id: choose_emotion_id)
@@ -108,4 +108,4 @@ class DiariesController < ApplicationController
     def diary_params
       params.require(:diary).permit(:date, :image_url, :user_id, answers: {})
     end
-end
+  end
