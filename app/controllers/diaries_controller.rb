@@ -56,6 +56,7 @@ class DiariesController < ApplicationController
 
     def new_diary_for_student
       @student = User.find(params[:id])
+      logger.debug "Student: #{@student.inspect}"  # デバッグ出力
       @diary = Diary.new
       @questions = Question.all
       @selected_answers = {}
