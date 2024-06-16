@@ -9,11 +9,8 @@ class User < ApplicationRecord
 
     # 一時保存時はバリデーションをスキップ
     validates :grade_class_id, presence: true, unless: :skip_validations
-    validates :school_code, presence: true, unless: :skip_validations
     validates :role, presence: true, unless: :skip_validations
     validates :name, presence: true, if: -> { role == 'teacher' }, unless: :skip_validations
-    validates :grade, presence: true, if: -> { role == 'student' }, unless: :skip_validations
-    validates :class_num, presence: true, if: -> { role == 'student' }, unless: :skip_validations
     validates :student_num, presence: true, if: -> { role == 'student' }, unless: :skip_validations
     validate :unique_student_number, if: -> { role == 'student' }, unless: :skip_validations
 
@@ -37,6 +34,10 @@ class User < ApplicationRecord
       role == 'teacher'
     end
 
+    def student?
+      role == 'student'
+    end
+
     def diary_for_date(date)
       diaries.find_by(date: date)
     end
@@ -44,8 +45,8 @@ class User < ApplicationRecord
     private
 
     def unique_student_number
-      if User.exists?(school_code: school_code, grade: grade, class_num: class_num, student_num: student_num)
-        errors.add(:student_num, "すでに他の人が登録されています")
+      if User.exists?(grade_class_id: grade_class_id, student_num: student_num)
+        errors.add(:student_num, "すでに、ほかのひとが とうろく されています")
       end
     end
-end
+  end

@@ -115,11 +115,11 @@
 
             if (!schoolCodeInput.value.trim()) {
                 valid = false;
-                errorMessage += "がっこうコードを入力してください。\n";
+                errorMessage += "がっこうコードを せんせいに きいて にゅうりょくしてください。\n";
             }
             if (!roleInput.value.trim()) {
                 valid = false;
-                errorMessage += "役割を選択してください。\n";
+                errorMessage += "「せんせい」か「こども」かを、えらんでください。\n";
             }
             if (roleInput.value === "teacher" && !nameInput.value.trim()) {
                 valid = false;
@@ -128,15 +128,15 @@
             if (roleInput.value === "student") {
                 if (!gradeInput.value.trim()) {
                     valid = false;
-                    errorMessage += "なんねんせいかを選択してください。\n";
+                    errorMessage += "なんねんせいかを えらんでください。\n";
                 }
                 if (!classNumInput.value.trim()) {
                     valid = false;
-                    errorMessage += "なんくみかを選択してください。\n";
+                    errorMessage += "なんくみかを えらんでください。\n";
                 }
                 if (!studentNumInput.value.trim()) {
                     valid = false;
-                    errorMessage += "しゅっせきばんごうを選択してください。\n";
+                    errorMessage += "しゅっせきばんごうを えらんでください。\n";
                 }
             }
 
