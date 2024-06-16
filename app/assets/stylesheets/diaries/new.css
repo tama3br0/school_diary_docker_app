@@ -7,6 +7,10 @@
     margin-top: 420px;  /* 上部の余白を調整 */
 }
 
+#flash_messages {
+    margin-bottom: 20px;
+}
+
 .new-diary-page h1 {
     font-size: 2em;
     margin-bottom: 20px;
