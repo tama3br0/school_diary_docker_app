@@ -1,8 +1,11 @@
+<!-- /users/additional_info.html.erb -->
 <h1>データを とうろく しよう！</h1>
 
-<div id="flash-alert" class="alert alert-danger" style="display: none;"></div>
+<% if flash[:alert] %>
+  <div id="flash-alert" class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
 
-<%= form_with model: @user, url: save_additional_info_path, local: true, data: { turbo: false }, html: { class: 'additional-info-form' } do |f| %>
+<%= form_with model: @user, url: save_additional_info_path, local: true, html: { class: 'additional-info-form' } do |f| %>
   <div class="field">
     <%= f.label :school_code, "がっこうコード ※ せんせいに、きいてね！" %>
     <%= f.text_field :school_code %>
@@ -65,7 +68,6 @@
     const studentNumInput = document.querySelector("#user_student_num");
     const teacherNameField = document.getElementById("teacher-name");
     const studentNumField = document.getElementById("student-num");
-    const flashAlert = document.getElementById("flash-alert");
 
     function toggleFields() {
       const role = roleInput.value;
@@ -141,9 +143,13 @@
 
       if (!valid) {
         event.preventDefault();
-        flashAlert.textContent = errorMessage;
-        flashAlert.style.display = 'block';
+        confirm(errorMessage);
       }
     });
+
+    const flashAlert = document.getElementById('flash-alert');
+    if (flashAlert && flashAlert.textContent.trim() !== "") {
+      confirm(flashAlert.textContent.trim());
+    }
   });
 </script>
