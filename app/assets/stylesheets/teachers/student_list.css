@@ -23,30 +23,35 @@
 }
 
 .student-list-page .student-table {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #f1f1f1;
-    table-layout: fixed;
+    display: flex;
+    justify-content: space-around;
 }
 
-.student-list-page .student-table th, .student-list-page .student-table td {
+.student-list-page .student-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.student-list-page .student-row {
+    display: flex;
+    justify-content: space-between;
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: center;
+    margin-bottom: 5px;
     background-color: #fff;
     color: #000;
     font-size: 0.9em;
     word-wrap: break-word;
 }
 
-.student-list-page .student-table th {
-    background-color: #e9e9e9;
+.student-list-page .student-number {
+    flex: 1;
+    font-size: 0.8em;
 }
 
-.student-list-page .student-number {
-    font-size: 0.8em;
+.student-list-page .student-action {
+    flex: 1;
+    text-align: right;
 }
 
 .button-link {
@@ -59,7 +64,6 @@
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
-    margin: 5px;
     cursor: pointer;
 }
 

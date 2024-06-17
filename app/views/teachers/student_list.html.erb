@@ -4,37 +4,34 @@
   <%= link_to 'クラス選択に戻る', select_class_path, class: 'back-link button-link' %>
   <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'back-link button-link' %>
 
-  <table class="student-table">
-    <thead>
-      <tr>
-        <th>管理番号</th>
-        <th>アクション</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% (1..45).each do |student_num| %>
-        <% student = @students.find { |s| s.student_num == student_num } %>
-        <tr>
-          <td class="student-number">
-            <% if student %>
-              <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
-            <% else %>
-              <%= "#{@grade_class.grade}#{@grade_class.class_num}#{sprintf('%02d', student_num)} (未登録)" %>
-            <% end %>
-          </td>
-          <td>
-            <% if student %>
-              <% if current_user.grade_class == @grade_class %>
-                <%= link_to '登録解除', remove_student_path(student), data: { turbo_method: :delete, turbo_confirm: '本当にこの児童を解除しますか？' }, class: 'button-link' %>
+  <div class="student-table">
+    <% (0..2).each do |col| %>
+      <div class="student-column">
+        <% (1..15).each do |i| %>
+          <% student_num = col * 15 + i %>
+          <% student = @students.find { |s| s.student_num == student_num } %>
+          <div class="student-row">
+            <div class="student-number">
+              <% if student %>
+                <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
               <% else %>
-                -
+                <%= "#{@grade_class.grade}#{@grade_class.class_num}#{sprintf('%02d', student_num)} " %>
               <% end %>
-            <% else %>
-              未登録
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+            </div>
+            <div class="student-action">
+              <% if student %>
+                <% if current_user.grade_class == @grade_class %>
+                  <%= link_to '登録解除', remove_student_path(student), data: { turbo_method: :delete, turbo_confirm: '本当にこの児童を解除しますか？' }, class: 'button-link' %>
+                <% else %>
+                  -
+                <% end %>
+              <% else %>
+                未登録
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
