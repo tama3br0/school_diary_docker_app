@@ -1,6 +1,7 @@
 /* teachers/student_list.css */
 .student-list-page {
     padding: 20px;
+    margin-top: 420px;
 }
 
 .student-list-page .page-title {
@@ -61,7 +62,7 @@
 .student-list-page .student-button-link {
     display: inline-block;
     padding: 5px 10px;
-    font-size: 0.9em; /* 文字サイズを調整 */
+    font-size: 0.7em; /* 文字サイズを調整 */
     color: white;
     background-color: #007bff;
     border: none;
