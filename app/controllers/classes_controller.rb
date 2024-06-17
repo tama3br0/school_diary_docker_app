@@ -3,7 +3,11 @@ class ClassesController < ApplicationController
     before_action :ensure_teacher
 
     def index
-      @classes = GradeClass.where(school_code: current_user.school_code)
+      if current_user.grade_class.present?
+        @classes = GradeClass.where(school_code: current_user.grade_class.school_code)
+      else
+        @classes = GradeClass.none
+      end
     end
 
     def show
@@ -18,4 +22,4 @@ class ClassesController < ApplicationController
         redirect_to authenticated_root_path, alert: 'このページにアクセスする権限がありません。'
       end
     end
-end
+  end
