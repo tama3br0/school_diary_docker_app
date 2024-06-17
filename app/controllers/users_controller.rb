@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         redirect_to authenticated_root_path, notice: 'とうろく できました！'
       else
         flash[:alert] = @user.errors.full_messages.join("\n")
-        render :additional_info
+        render :additional_info, status: :unprocessable_entity
       end
     end
 
