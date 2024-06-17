@@ -25,16 +25,19 @@
 .student-list-page .student-table {
     display: flex;
     justify-content: space-around;
+    gap: 10px; /* 列間のスペースを追加 */
 }
 
 .student-list-page .student-column {
     flex: 1;
     margin: 0 10px;
+    min-width: 180px; /* 列の最小幅を設定 */
 }
 
 .student-list-page .student-row {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* 垂直方向の中央揃え */
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 5px;
@@ -56,8 +59,8 @@
 
 .button-link {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 1em;
+    padding: 5px 10px;
+    font-size: 0.9em; /* 文字サイズを調整 */
     color: white;
     background-color: #007bff;
     border: none;
