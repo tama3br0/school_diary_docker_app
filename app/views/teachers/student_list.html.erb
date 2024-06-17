@@ -15,7 +15,7 @@
               <% if student %>
                 <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
               <% else %>
-                <%= "#{@grade_class.grade}#{@grade_class.class_num}#{sprintf('%02d', student_num)} (未登録)" %>
+                <%= "#{@grade_class.grade}#{@grade_class.class_num}#{sprintf('%02d', student_num)}" %>
               <% end %>
             </div>
             <div class="student-action">
