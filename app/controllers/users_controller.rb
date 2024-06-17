@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         redirect_to authenticated_root_path, notice: 'とうろく できました！'
       else
         flash[:alert] = @user.errors.full_messages.join("\n")
-        render :additional_info
+        redirect_to additional_info_users_path
       end
     end
 
