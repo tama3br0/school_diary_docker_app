@@ -2,7 +2,7 @@
 <h1>データを とうろく しよう！</h1>
 
 <% if flash[:alert] %>
-  <div id="flash-alert" class="alert alert-danger" style="display:none;"><%= flash[:alert] %></div>
+  <div id="flash-alert" class="alert alert-danger"><%= flash[:alert] %></div>
 <% end %>
 
 <%= form_with model: @user, url: save_additional_info_path, local: true, html: { class: 'additional-info-form' } do |f| %>
