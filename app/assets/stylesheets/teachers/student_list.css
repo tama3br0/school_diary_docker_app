@@ -1,0 +1,68 @@
+/* teachers/student_list.css */
+.student-list-page {
+    padding: 20px;
+}
+
+.student-list-page .page-title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.student-list-page .back-link {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    color: white;
+    text-decoration: none;
+}
+
+.student-list-page .back-link:hover {
+    text-decoration: underline;
+}
+
+.student-list-page .student-table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #f1f1f1;
+    table-layout: fixed;
+}
+
+.student-list-page .student-table th, .student-list-page .student-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    font-size: 0.9em;
+    word-wrap: break-word;
+}
+
+.student-list-page .student-table th {
+    background-color: #e9e9e9;
+}
+
+.student-list-page .student-number {
+    font-size: 0.8em;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+}

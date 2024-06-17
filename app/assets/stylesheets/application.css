@@ -16,5 +16,6 @@
  *= require stamps/show
  *= require classes/index
  *= require classes/show
-
+ *= require teachers/select_class
+ *= require teachers/student_list
  */

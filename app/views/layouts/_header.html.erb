@@ -1,3 +1,4 @@
+<!-- /layouts/_header.html.erb -->
 <header>
     <div class="left-section">
         <div class="logo">
@@ -6,10 +7,13 @@
             <% end %>
         </div>
         <div class="school-code">
-            がっこうコード: <%= @school_code %>
+            がっこうコード: <%= school_code %>
         </div>
     </div>
     <div class="right-section">
+        <% if current_user.teacher? %>
+          <%= link_to '登録児童一覧', select_class_path, class: 'button-link' %>
+        <% end %>
         <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-button" %>
     </div>
 </header>

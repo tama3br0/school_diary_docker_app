@@ -12,7 +12,7 @@
 
 <body>
   <% if user_signed_in? %>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/header', school_code: current_user.grade_class&.school_code %>
   <% end %>
   <%= yield %>
 </body>

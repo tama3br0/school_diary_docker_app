@@ -1,0 +1,40 @@
+<!-- app/views/teachers/student_list.html.erb -->
+<div class="student-list-page">
+  <h1 class="page-title"><%= @grade_class.grade %> - <%= @grade_class.class_num %> の登録児童一覧</h1>
+  <%= link_to 'クラス選択に戻る', select_class_path, class: 'back-link button-link' %>
+  <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'back-link button-link' %>
+
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>管理番号</th>
+        <th>アクション</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (1..45).each do |student_num| %>
+        <% student = @students.find { |s| s.student_num == student_num } %>
+        <tr>
+          <td class="student-number">
+            <% if student %>
+              <%= "#{student.grade_class.grade}#{student.grade_class.class_num}#{sprintf('%02d', student.student_num)}" %>
+            <% else %>
+              <%= "#{@grade_class.grade}#{@grade_class.class_num}#{sprintf('%02d', student_num)} (未登録)" %>
+            <% end %>
+          </td>
+          <td>
+            <% if student %>
+              <% if current_user.grade_class == @grade_class %>
+                <%= link_to '登録解除', remove_student_path(student), method: :delete, data: { confirm: '本当にこの児童を解除しますか？' }, class: 'button-link' %>
+              <% else %>
+                -
+              <% end %>
+            <% else %>
+              未登録
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

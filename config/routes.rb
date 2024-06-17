@@ -23,4 +23,10 @@ Rails.application.routes.draw do
     get 'classes',                      to: 'classes#index',                as: 'classes'
     get 'classes/:id/class_diary',      to: 'diaries#class_diary',          as: 'class_diary'
     get 'students/:id/student_diary',   to: 'diaries#student_diary',        as: 'student_diary'
+
+    authenticate :user, lambda { |u| u.teacher? } do
+      get       'teacher/select_class',         to: 'teachers#select_class',    as: :select_class
+      get       'teacher/student_list/:id',     to: 'teachers#student_list',    as: :student_list
+      delete    'teacher/remove_student/:id',   to: 'teachers#remove_student',  as: :remove_student
+    end
 end
