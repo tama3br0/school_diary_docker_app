@@ -25,7 +25,7 @@
           <td>
             <% if student %>
               <% if current_user.grade_class == @grade_class %>
-                <%= link_to '登録解除', remove_student_path(student), method: :delete, data: { confirm: '本当にこの児童を解除しますか？' }, class: 'button-link' %>
+                <%= button_to '登録解除', remove_student_path(student), method: :delete, data: { confirm: '本当にこの児童を解除しますか？' }, class: 'button-link' %>
               <% else %>
                 -
               <% end %>
