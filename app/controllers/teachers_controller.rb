@@ -3,7 +3,7 @@ class TeachersController < ApplicationController
     before_action :ensure_teacher
 
     def select_class
-      @grade_classes = GradeClass.where(school_code: current_user.grade_class.school_code)
+      @grade_classes = GradeClass.where(school_code: current_user.grade_class.school_code).order(:grade, :class_num)
     end
 
     def student_list
@@ -25,4 +25,4 @@ class TeachersController < ApplicationController
     def ensure_teacher
       redirect_to root_path, alert: 'アクセス権がありません。' unless current_user.teacher?
     end
-end
+  end

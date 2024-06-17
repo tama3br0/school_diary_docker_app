@@ -4,7 +4,7 @@ class ClassesController < ApplicationController
 
     def index
       if current_user.grade_class.present?
-        @classes = GradeClass.where(school_code: current_user.grade_class.school_code)
+        @classes = GradeClass.where(school_code: current_user.grade_class.school_code).order(:grade, :class_num)
       else
         @classes = GradeClass.none
       end
