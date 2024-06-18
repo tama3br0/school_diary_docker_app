@@ -26,5 +26,10 @@
       </div>
     <% end %>
 
+    <div class="diary-text vertical-text">
+      <%= generate_diary_text(@diary) %>
+    </div>
+
     <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'button' %>
   </div>
+

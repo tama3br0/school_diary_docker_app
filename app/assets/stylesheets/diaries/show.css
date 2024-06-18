@@ -102,3 +102,15 @@
     margin: 10px;
     display: inline-block;
 }
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+  }
+
