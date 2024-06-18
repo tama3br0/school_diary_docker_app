@@ -112,5 +112,13 @@
     border: 1px solid #ccc;
     margin-top: 20px;
     background-color: #f9f9f9;
-  }
+    color: #000; /* 文字の色を黒に設定 */
+    white-space: pre-line; /* 改行を反映 */
+    display: inline-block; /* インラインブロックで中央寄せ */
+}
 
+.diary-text-container {
+    display: flex;
+    justify-content: center; /* コンテンツを中央寄せ */
+    margin-top: 20px;
+}
