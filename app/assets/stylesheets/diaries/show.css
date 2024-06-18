@@ -115,10 +115,20 @@
     color: #000; /* 文字の色を黒に設定 */
     white-space: pre-line; /* 改行を反映 */
     display: inline-block; /* インラインブロックで中央寄せ */
+    text-align: left; /* 頭ぞろえにする */
+    margin-bottom: 20px; /* 隣の文章との間隔を設定 */
 }
 
 .diary-text-container {
     display: flex;
     justify-content: center; /* コンテンツを中央寄せ */
     margin-top: 20px;
+}
+
+.vertical-text img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px; /* 画像の大きさを20pxに固定 */
+    height: 20px; /* 画像の大きさを20pxに固定 */
+    margin-left: 5px; /* 画像とテキストの間に少し余白を追加 */
 }

@@ -7,24 +7,24 @@
       <%= link_to 'つぎの ひ', diary_path(@diary.next_day), class: 'button' if @diary.next_day %>
     </div>
 
-    <% @questions.each do |question| %>
-      <div class="question-container">
-        <h3><%= question.text %></h3>
-        <% answer = @diary.answers.find_by(question: question) %>
-        <% if answer && (answer.choose_emotion.image_url.present? || answer.choose_emotion.image.attached?) %>
-          <div class="emotions-container">
-            <div class="emotion-item">
-              <% if answer.choose_emotion.image_url.present? %>
-                <%= image_tag answer.choose_emotion.image_url, alt: answer.choose_emotion.text, class: "emotion-image" %>
-              <% else %>
-                <%= image_tag answer.choose_emotion.s3_image_url, alt: answer.choose_emotion.text, class: "emotion-image" %>
-              <% end %>
-              <span><%= answer.choose_emotion.text %></span>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+    <!-- <% @questions.each do |question| %> -->
+      <!-- <div class="question-container"> -->
+        <!-- <h3><%= question.text %></h3> -->
+        <!-- <% answer = @diary.answers.find_by(question: question) %> -->
+        <!-- <% if answer && (answer.choose_emotion.image_url.present? || answer.choose_emotion.image.attached?) %> -->
+          <!-- <div class="emotions-container"> -->
+            <!-- <div class="emotion-item"> -->
+              <!-- <% if answer.choose_emotion.image_url.present? %> -->
+                <!-- <%= image_tag answer.choose_emotion.image_url, alt: answer.choose_emotion.text, class: "emotion-image" %> -->
+              <!-- <% else %> -->
+                <!-- <%= image_tag answer.choose_emotion.s3_image_url, alt: answer.choose_emotion.text, class: "emotion-image" %> -->
+              <!-- <% end %> -->
+              <!-- <span><%= answer.choose_emotion.text %></span> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- <% end %> -->
+      <!-- </div> -->
+    <!-- <% end %> -->
 
     <div class="diary-text-container">
       <div class="diary-text vertical-text">
