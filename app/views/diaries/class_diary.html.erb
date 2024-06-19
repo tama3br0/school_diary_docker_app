@@ -2,9 +2,9 @@
 <div class="class-diary-page">
     <h1 class="page-title"><%= @grade_class.grade %> - <%= @grade_class.class_num %> の日記一覧</h1>
     <div class="day-navigation">
-        <%= link_to '前の日', class_diary_path(@grade_class, date: @previous_date), class: 'button' if @previous_date %>
-        <span class="date-field"><%= @date.strftime('%Y年%-m月%-d日') %></span>
-        <%= link_to '次の日', class_diary_path(@grade_class, date: @next_date), class: 'button' if @next_date %>
+      <%= link_to '前の日', class_diary_path(@grade_class, date: @previous_date), class: 'button' if @previous_date %>
+      <span class="date-field"><%= @date.strftime('%Y年%-m月%-d日') %></span>
+      <%= link_to '次の日', class_diary_path(@grade_class, date: @next_date), class: 'button' if @next_date %>
     </div>
     <%= link_to 'さいしょに もどる', authenticated_root_path, class: 'back-link button-link' %>
     <%= link_to 'クラス選択', classes_path, class: 'back-link button-link' %>
@@ -63,4 +63,4 @@
         <% end %>
       </tbody>
     </table>
-</div>
+  </div>

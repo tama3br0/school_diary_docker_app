@@ -34,8 +34,8 @@ module DiariesHelper
         "きょうの がっこうは、 とても たのしかったです。#{image_tag_for_emotion(image_url, 'とても たのしかった')}<br>"
       when "たのしかった"
         "きょうの がっこうは たのしかったです。#{image_tag_for_emotion(image_url, 'たのしかった')}<br>"
-      when "すこし たのしかった"
-        "きょうの がっこうは すこしだけ たのしかったです。#{image_tag_for_emotion(image_url, 'すこし たのしかった')}<br>"
+      when "すこしだけ たのしかった"
+        "きょうの がっこうは すこしだけ たのしかったです。#{image_tag_for_emotion(image_url, 'すこしだけ たのしかった')}<br>"
       when "たのしくなかった"
         "きょうの がっこうは あまり たのしくなかったです。#{image_tag_for_emotion(image_url, 'たのしくなかった')}<br>"
       else
@@ -49,8 +49,8 @@ module DiariesHelper
         "きょうの べんきょうは、 とても よく わかりました。#{image_tag_for_emotion(image_url, 'とても よくわかった')}<br>"
       when "よくわかった"
         "きょうの べんきょうは よく わかりました。#{image_tag_for_emotion(image_url, 'よくわかった')}<br>"
-      when "すこし わかった"
-        "きょうの べんきょうは すこしだけ わかりました。#{image_tag_for_emotion(image_url, 'すこし わかった')}<br>"
+      when "すこしだけ わかった"
+        "きょうの べんきょうは すこしだけ わかりました。#{image_tag_for_emotion(image_url, 'すこしだけ わかった')}<br>"
       when "わからなかった"
         "きょうの べんきょうは あまり わかりませんでした。#{image_tag_for_emotion(image_url, 'わからなかった')}<br>"
       else
@@ -64,8 +64,8 @@ module DiariesHelper
         "やすみじかんは、 とても たのしく あそべました。#{image_tag_for_emotion(image_url, 'とても たのしかった')}<br>"
       when "たのしかった"
         "やすみじかんは たのしく あそべました。#{image_tag_for_emotion(image_url, 'たのしかった')}<br>"
-      when "すこし たのしかった"
-        "やすみじかんは すこしだけ たのしく あそべました。#{image_tag_for_emotion(image_url, 'すこし たのしかった')}<br>"
+      when "すこしだけ たのしかった"
+        "やすみじかんは すこしだけ たのしく あそべました。#{image_tag_for_emotion(image_url, 'すこしだけ たのしかった')}<br>"
       when "たのしくなかった"
         "やすみじかんは あまり たのしく あそべませんでした。#{image_tag_for_emotion(image_url, 'たのしくなかった')}<br>"
       else
@@ -81,8 +81,8 @@ module DiariesHelper
         "きゅうしょくは のこさずに、ぜんぶたべました。#{image_tag_for_emotion(image_url, 'のこさずに、ぜんぶたべた')}<br>"
       when "へらしたけれど、ぜんぶたべた"
         "きゅうしょくは へらしたけれど、ぜんぶたべました。#{image_tag_for_emotion(image_url, 'へらしたけれど、ぜんぶたべた')}<br>"
-      when "すこし のこしてしまった"
-        "きゅうしょくは すこしだけ のこしてしまいました。#{image_tag_for_emotion(image_url, 'すこし のこしてしまった')}<br>"
+      when "すこしだけ のこしてしまった"
+        "きゅうしょくは すこしだけ のこしてしまいました。#{image_tag_for_emotion(image_url, 'すこしだけ のこしてしまった')}<br>"
       else
         ""
       end
@@ -95,4 +95,4 @@ module DiariesHelper
         ""
       end
     end
-end
+  end
