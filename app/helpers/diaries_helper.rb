@@ -95,4 +95,4 @@ module DiariesHelper
         ""
       end
     end
-  end
+end
