@@ -3,6 +3,10 @@ class GraphsController < ApplicationController
     before_action :authenticate_user!
     before_action :authorize_teacher
 
+    def index
+      # ここで必要な処理を行う
+    end
+
     def class_today
       @date = params[:date] || Date.today
       @previous_date = @date - 1.day
@@ -10,10 +14,10 @@ class GraphsController < ApplicationController
       @answers = Answer.joins(:diary).where(diaries: { date: @date, user_id: current_user.class_students.pluck(:id) })
 
       @categories = {
-        '学校' => ['とても たのしかった', 'たのしかった', 'すこし たのしかった', 'たのしくなかった'],
-        '勉強' => ['とても よくわかった', 'よくわかった', 'すこし わかった', 'わからなかった'],
-        '休み時間' => ['とても たのしかった', 'たのしかった', 'すこし たのしかった', 'たのしくなかった'],
-        '給食' => ['ぜんぶたべて、おかわりもした', 'のこさずに、ぜんぶたべた', 'へらしたけれど、ぜんぶたべた', 'すこし のこしてしまった']
+        '学校' => ['とても たのしかった', 'たのしかった', 'すこしだけ たのしかった', 'たのしくなかった'],
+        '勉強' => ['とても よくわかった', 'よくわかった', 'すこしだけ わかった', 'わからなかった'],
+        '休み時間' => ['とても たのしかった', 'たのしかった', 'すこしだけ たのしかった', 'たのしくなかった'],
+        '給食' => ['ぜんぶたべて、おかわりもした', 'のこさずに、ぜんぶたべた', 'へらしたけれど、ぜんぶたべた', 'すこしだけ のこしてしまった']
       }
 
       @emotion_data = @categories.each_with_object({}) do |(category, emotions), hash|
@@ -45,11 +49,16 @@ class GraphsController < ApplicationController
 
     def answer_score(answer)
       case answer.choose_emotion.text
-      when 'とても たのしかった', 'とても よくわかった', 'ぜんぶたべて、おかわりもした' then 4
-      when 'たのしかった', 'よくわかった', 'のこさずに、ぜんぶたべた' then 3
-      when 'すこし たのしかった', 'すこし わかった', 'へらしたけれど、ぜんぶたべた' then 2
-      when 'たのしくなかった', 'わからなかった', 'すこし のこしてしまった' then 1
-      else 0
+      when 'とても たのしかった', 'とても よくわかった', 'ぜんぶたべて、おかわりもした'
+        4
+      when 'たのしかった', 'よくわかった', 'のこさずに、ぜんぶたべた'
+        3
+      when 'すこしだけ たのしかった', 'すこしだけ わかった', 'へらしたけれど、ぜんぶたべた'
+        2
+      when 'たのしくなかった', 'わからなかった', 'すこしだけ のこしてしまった'
+        1
+      else
+        0
       end
     end
 end
