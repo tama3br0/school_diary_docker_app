@@ -24,27 +24,29 @@ questions_data.each_with_index do |question_data, q_index|
   question_data["emotions"].each_with_index do |emotion_data, e_index|
     puts "質問 #{q_index + 1} の感情 #{e_index + 1} / #{question_data["emotions"].size} を処理中"
     start_time = Time.now
-    emotion = ChooseEmotion.find_or_create_by!(text: emotion_data["text"], level: emotion_data["level"])
-    puts "感情の処理時間: #{Time.now - start_time} 秒"
+    emotion = ChooseEmotion.find_or_initialize_by(text: emotion_data["text"], level: emotion_data["level"])
+
+    unless emotion.persisted?
+      image_start_time = Time.now
+      case emotion_data["text"]
+      when "とても たのしかった", "とても よくわかった", "ぜんぶたべて、おかわりもした"
+        emotion.image_url = "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/very_smile.png"
+      when "たのしかった", "よくわかった", "のこさずに、ぜんぶたべた"
+        emotion.image_url = "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/smile.png"
+      when "すこしだけ たのしかった", "すこしだけ わかった", "へらしたけれど、ぜんぶたべた"
+        emotion.image_url = "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/normal.png"
+      when "たのしくなかった", "わからなかった", "すこしだけ のこしてしまった"
+        emotion.image_url = "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/shock.png"
+      end
+      emotion.save!
+      puts "画像の更新時間: #{Time.now - image_start_time} 秒"
+    end
 
     unless QuestionEmotion.exists?(question: question, choose_emotion: emotion)
       QuestionEmotion.create!(question: question, choose_emotion: emotion)
     end
 
-    unless emotion.image.attached? || emotion.image_url.present?
-      image_start_time = Time.now
-      case emotion_data["text"]
-      when "とても たのしかった", "とても よくわかった", "ぜんぶたべて、おかわりもした"
-        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/very_smile.png")
-      when "たのしかった", "よくわかった", "のこさずに、ぜんぶたべた"
-        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/smile.png")
-      when "すこしだけ たのしかった", "すこしだけ わかった", "へらしたけれど、ぜんぶたべた"
-        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/normal.png")
-      when "たのしくなかった", "わからなかった", "すこしだけ のこしてしまった"
-        emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/shock.png")
-      end
-      puts "画像の更新時間: #{Time.now - image_start_time} 秒"
-    end
+    puts "感情の処理時間: #{Time.now - start_time} 秒"
   end
 end
 
@@ -52,6 +54,7 @@ puts "全ての処理が完了しました"
 
 # 元のジョブキューアダプターに戻す
 Rails.application.config.active_job.queue_adapter = :async
+
 
 # # 学校コード、学年、クラス番号の組み合わせを生成
 # school_codes = [1, 2]
