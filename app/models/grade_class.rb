@@ -4,4 +4,4 @@ class GradeClass < ApplicationRecord
     validates :grade, presence: true
     validates :class_num, presence: true
     validates :school_code, presence: true
-end
+  end

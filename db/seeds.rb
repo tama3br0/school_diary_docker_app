@@ -37,9 +37,9 @@ questions_data.each_with_index do |question_data, q_index|
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/very_smile.png")
       when "たのしかった", "よくわかった", "のこさずに、ぜんぶたべた"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/smile.png")
-      when "すこしだけ たのしかった", "すこしだけ わかった", "へらしたけれど、ぜんぶたべた"
+      when "すこし たのしかった", "すこし わかった", "へらしたけれど、ぜんぶたべた"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/normal.png")
-      when "たのしくなかった", "わからなかった", "すこしだけ のこしてしまった"
+      when "たのしくなかった", "わからなかった", "すこし のこしてしまった"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/shock.png")
       end
       puts "画像の更新時間: #{Time.now - start_time} 秒"

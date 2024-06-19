@@ -13,7 +13,6 @@
     <div class="right-section">
         <% if current_user.teacher? %>
           <%= link_to '登録児童一覧', select_class_path, class: 'button-link' %>
-          <%= link_to 'グラフで見る', graphs_path, class: 'button-link' %>
         <% end %>
         <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-button" %>
     </div>
