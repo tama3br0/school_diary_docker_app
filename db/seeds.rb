@@ -1,4 +1,4 @@
-# seeds.rb
+# db/seeds.rb
 require 'json'
 require 'faker'
 require 'aws-sdk-s3'
@@ -32,17 +32,18 @@ questions_data.each_with_index do |question_data, q_index|
     end
 
     unless emotion.image.attached? || emotion.image_url.present?
+      image_start_time = Time.now
       case emotion_data["text"]
       when "とても たのしかった", "とても よくわかった", "ぜんぶたべて、おかわりもした"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/very_smile.png")
       when "たのしかった", "よくわかった", "のこさずに、ぜんぶたべた"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/smile.png")
-      when "すこし たのしかった", "すこし わかった", "へらしたけれど、ぜんぶたべた"
+      when "すこしだけ たのしかった", "すこしだけ わかった", "へらしたけれど、ぜんぶたべた"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/normal.png")
-      when "たのしくなかった", "わからなかった", "すこし のこしてしまった"
+      when "たのしくなかった", "わからなかった", "すこしだけ のこしてしまった"
         emotion.update(image_url: "https://school-diary-app-bucket.s3.ap-northeast-1.amazonaws.com/shock.png")
       end
-      puts "画像の更新時間: #{Time.now - start_time} 秒"
+      puts "画像の更新時間: #{Time.now - image_start_time} 秒"
     end
   end
 end
