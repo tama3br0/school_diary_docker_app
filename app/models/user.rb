@@ -42,6 +42,12 @@ class User < ApplicationRecord
       diaries.find_by(date: date)
     end
 
+    # インスタンスメソッドとしてクラスの学生を取得するメソッドを追加
+    def class_students
+      return [] unless teacher?
+      grade_class.users.where(role: 'student')
+    end
+
     private
 
     def unique_student_number
@@ -49,4 +55,4 @@ class User < ApplicationRecord
         errors.add(:student_num, "すでに、ほかのひとが とうろく されています")
       end
     end
-  end
+end

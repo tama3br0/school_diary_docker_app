@@ -4,7 +4,7 @@ class GraphsController < ApplicationController
     before_action :authorize_teacher
 
     def index
-      # ここで必要な処理を行う
+      # 必要な処理を行う
     end
 
     def class_today
@@ -28,7 +28,7 @@ class GraphsController < ApplicationController
     end
 
     def student
-      @student = User.find(params[:student_id])
+      @student = User.find(params[:id])
       @start_date = Date.parse(params[:start_date] || 1.month.ago.to_s)
       @end_date = Date.parse(params[:end_date] || Date.today.to_s)
       @answers = Answer.joins(:diary).where(diaries: { user_id: @student.id, date: @start_date..@end_date })
