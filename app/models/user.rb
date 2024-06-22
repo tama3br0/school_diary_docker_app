@@ -49,4 +49,4 @@ class User < ApplicationRecord
         errors.add(:student_num, "すでに、ほかのひとが とうろく されています")
       end
     end
-  end
+end

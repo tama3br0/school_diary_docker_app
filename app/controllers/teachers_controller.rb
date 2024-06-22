@@ -25,4 +25,4 @@ class TeachersController < ApplicationController
     def ensure_teacher
       redirect_to root_path, alert: 'アクセス権がありません。' unless current_user.teacher?
     end
-  end
+end

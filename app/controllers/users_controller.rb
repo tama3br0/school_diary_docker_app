@@ -41,4 +41,4 @@ class UsersController < ApplicationController
       end
       true
     end
-  end
+end

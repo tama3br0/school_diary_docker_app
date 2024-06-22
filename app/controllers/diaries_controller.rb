@@ -8,8 +8,10 @@ class DiariesController < ApplicationController
     end
 
     def create
+                # デバッグログ追加
+        Rails.logger.debug "Diary params: #{diary_params.inspect}"
       current_user.diaries.where(date: diary_params[:date]).destroy_all
-      @diary = current_user.diaries.build(diary_params)
+      @diary = current_user.diaries.build(diary_params) # <= ここをcurrent_userにしているから、ログインしているユーザーのIDになる
       @questions = Question.all
       @selected_answers = params[:answers] || {}
 
